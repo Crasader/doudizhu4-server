@@ -1,0 +1,29 @@
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:03:02 * game=>2地主是:2_128
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:04:56 * game=>2 gameOver
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:04:56 * game=>2 winGameRoleId=>2_128
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:04:56 * game=>2 dizhuWin:true-dizhuSpring:truefalse
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:05:51 * game=>2地主是:2_127
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:07:44 * game=>3地主是:3_130
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:12:05 * game=>3 gameOver
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:12:05 * game=>3 winGameRoleId=>3_85
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:12:05 * game=>3 dizhuWin:false-dizhuSpring:falsefalse
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:12:29 * game=>3地主是:3_127
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:14:55 * game=>3 gameOver
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:14:55 * game=>3 winGameRoleId=>3_127
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:14:55 * game=>3 dizhuWin:true-dizhuSpring:falsefalse
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:15:25 * game=>3地主是:3_127
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:16:58 * game=>3 gameOver
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:16:58 * game=>3 winGameRoleId=>3_85
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:16:58 * game=>3 dizhuWin:false-dizhuSpring:falsefalse
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:17:13 * game=>3地主是:3_130
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:20:11 * game=>3 gameOver
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:20:11 * game=>3 winGameRoleId=>3_130
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:20:11 * game=>3 dizhuWin:true-dizhuSpring:falsefalse
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:20:28 * game=>3地主是:3_130
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:23:59 * game=>3 gameOver
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:23:59 * game=>3 winGameRoleId=>3_127
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:23:59 * game=>3 dizhuWin:false-dizhuSpring:falsefalse
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:24:11 * game=>3地主是:3_130
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:35:16 * game=>3 gameOver
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:35:16 * game=>3 winGameRoleId=>3_127
+INFO - <SYS>[game:doudizhu10004,roleId:FightService,] * 2017-07-10 15:35:16 * game=>3 dizhuWin:false-dizhuSpring:falsefalse

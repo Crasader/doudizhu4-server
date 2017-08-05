@@ -1,0 +1,14 @@
+package com.randioo.doudizhu_server.protocol;
+import "Entity.proto";
+
+message HeartRequest{
+	
+}
+
+message HeartResponse{
+	
+}
+
+message SCHeart{
+	extensions 1 to 100;
+}

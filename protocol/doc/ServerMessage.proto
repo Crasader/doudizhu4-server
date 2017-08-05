@@ -1,0 +1,86 @@
+package com.randioo.doudizhu_server.protocol;
+import "Login.proto";
+import "Role.proto";
+import "Match.proto";
+import "Fight.proto";
+import "MoneyExchange.proto";
+import "Settings.proto";
+import "Heartbeat.proto";
+import "Video.proto";
+import "Heart.proto";
+
+message SC{
+    optional HeartResponse HeartResponse = 1;//心跳必须第一行
+    optional SCHeart SCHeart = 2;//心跳sc
+	
+	optional LoginCheckAccountResponse LoginCheckAccountResponse = 3;
+	optional LoginCreateRoleResponse LoginCreateRoleResponse = 4;
+	optional LoginGetRoleDataResponse LoginGetRoleDataResponse = 5;
+	optional SCLoginGetRoleData SCLoginGetRoleData = 6;
+	optional SCLoginOtherSide SCLoginOtherSide = 7;
+
+	optional RoleRenameResponse RoleRenameResponse = 8;
+
+	optional MatchCreateGameResponse MatchCreateGameResponse = 9;
+	optional MatchJoinGameResponse MatchJoinGameResponse = 10;
+	optional SCMatchJoinGame SCMatchJoinGame = 11;
+	optional MatchRoleResponse MatchRoleResponse = 12;
+	optional SCMatchRole SCMatchRole = 13;
+	optional MatchCancelResponse MatchCancelResponse = 14;
+	optional SCMatchCreateGame SCMatchCreateGame = 15;
+	optional SCMatchAI SCMatchAI = 16;
+	optional SCMatchJoinGameData SCMatchJoinGameData = 17;
+	optional MatchAIResponse MatchAIResponse = 18;
+	optional SCMatchOutOfTime SCMatchOutOfTime = 19;
+    optional SCMatchCancelGame SCMatchCancelGame= 20;//取消比赛
+    optional MatchGetGameInfoResponse MatchGetGameInfoResponse = 21;//房间信息
+    
+	optional FightReadyResponse FightReadyResponse = 22;//准备(只有好友对战用)
+	optional SCFightReady SCFightReady = 23;//某玩家进行准备
+	optional SCFightStart SCFightStart = 24;//游戏开始
+	optional FightExitGameResponse FightExitGameResponse = 25;//游戏退出
+	optional SCFightExitGame SCFightExitGame = 26;//某玩家游戏退出
+	optional SCFightApplyExitGame SCFightApplyExitGame = 27;//某玩家申请游戏退出
+	optional FightAgreeExitGameResponse FightAgreeExitGameResponse = 28;//同意游戏退出
+	optional SCFightGameDismiss SCFightGameDismiss = 29;//游戏解散
+	optional SCFightLoadResource SCFightLoadResource = 30;//游戏资源加载(用于匹配)
+	optional SCFightCallLandLord SCFightCallLandLord = 31;//通知叫地主
+	optional SCFightPutOut SCFightPutOut = 32;//通知出牌
+	optional SCFightLandLord SCFightLandLord = 33;//通知地主牌
+	optional FightCallLandLordResponse FightCallLandLordResponse = 34;//叫地主
+	optional FightSendCardResponse FightSendCardResponse = 35;
+	optional SCFightPutOutPai SCFightPutOutPai = 36;
+	optional SCFightMingPai SCFightMingPai = 37;
+	optional SCFightRoundOver SCFightRoundOver = 38;
+	optional FightRecommandResponse FightRecommandResponse = 39;
+	optional SCFightGameOver SCFightGameOver = 40;
+	optional FightMingPaiResponse FightMingPaiResponse = 41;
+	optional FightGetlastRoundResponse FightGetlastRoundResponse = 42;
+	optional SCFightLastRoundReady SCFightLastRoundReady = 43;
+	optional FightRejoinResponse FightRejoinResponse = 44;
+	optional SCFightDisconnect SCFightDisconnect = 45;
+	optional SCFightRejoin SCFightRejoin = 46;
+	optional SCFightApplyExitResult SCFightApplyExitResult = 47;
+	optional FightAutoResponse FightAutoResponse = 48;
+	optional SCFightAuto SCFightAuto = 49;
+	optional SCFightFinishRejoin SCFightFinishRejoin = 50;
+	optional FightApplyExitGameResponse FightApplyExitGameResponse = 51;//申请退出
+	optional SCFightCallFen SCFightCallFen = 52;//叫分
+	optional FightBackMenuResponse FightBackMenuResponse = 53;
+    optional SCFightCurrentScore SCFightCurrentScore = 54;//当前积分
+    optional FightGameInfoResponse FightGameInfoResponse  = 55;//获取玩家信息
+    optional SCFightMingPaiOnOrOff SCFightMingPaiOnOrOff = 56;//明牌开关 
+    optional SCFightSpring SCFightSpring = 57;//春天 
+    
+	optional MoneyExchangeResponse MoneyExchangeResponse = 58;//燃点币游戏币（欢乐豆）互换
+	optional SettingsResponse SettingsResponse = 59;//设置
+
+	optional GetRoleDataResponse GetRoleDataResponse = 60;
+	optional GetSettingsResponse GetSettingsResponse = 61;//设置
+	
+	optional HeartbeatResponse HeartbeatResponse = 62;
+
+	optional VideoGetResponse VideoGetResponse = 63;
+	optional VideoGetByIdResponse VideoGetByIdResponse = 64;
+	optional VideoGetByRoundResponse VideoGetByRoundResponse = 65;
+} // 65

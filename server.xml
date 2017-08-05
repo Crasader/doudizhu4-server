@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+	<param type="int" key="port">10006</param>
+	<param type="boolean" key="gm">true</param>
+
+
+	<param type="string" key="configPath">./config.zip</param>
+	<param type="string" key="sensitivePath">./sensitive.txt</param>
+	<param type="string" key="configPackageRoot">com.randioo.doudizhu_server.entity.file</param>
+
+	<!-- 平台 -->
+	<!-- 平台接口调试 -->
+	<param type="boolean" key="platform">true</param>
+	<!-- 平台游戏包名 -->
+	<param type="string" key="platformPackageName">com.randioo.RDMJZhongHua</param>
+
+
+	<param type="string" key="project">public_majiang</param>
+</server>

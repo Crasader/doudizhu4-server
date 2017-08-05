@@ -1,0 +1,97 @@
+package com.randioo.doudizhu_server.protocol;
+
+import "Entity.proto";
+
+message MatchCreateGameRequest{
+	optional GameConfig gameConfig = 1;
+}
+
+
+message MatchCreateGameResponse{
+	optional int32 errorCode = 1[default = 1];
+}
+message SCMatchCreateGame{
+	optional string id = 1;
+	optional GameRoleData gameRoleData = 2;
+	optional string gameId = 3;
+	optional int32 roomType = 4;
+	optional bool mingpai = 5;
+	optional int32 roundNum = 6;
+}
+
+message MatchAIRequest{
+}
+message MatchAIResponse{
+	optional int32 errorCode = 1[default = 1];
+}
+
+message SCMatchAI{
+	optional string id = 1;
+	optional GameRoleData gameRoleData = 2;
+	optional string gameId = 3;
+	optional int32 roomType = 4;
+	optional bool mingpai = 5;
+}
+
+
+message MatchRoleRequest{
+}
+message MatchRoleResponse{
+	optional int32 errorCode = 1[default = 1];
+	optional int32 countdown = 2;
+}
+
+
+message MatchCancelRequest{
+}
+message MatchCancelResponse{
+	optional int32 errorCode = 1[default = 1];
+}
+message SCMatchOutOfTime{
+}
+
+
+
+
+message MatchJoinGameRequest{
+	optional string lockString = 1;
+}
+
+message MatchJoinGameResponse{
+	optional int32 errorCode = 1[default = 1];
+}
+
+message SCMatchJoinGameData{
+	repeated GameRoleData gameRoleData = 1;
+	optional string id = 2;
+	optional int32 seated = 3;
+	optional int32 roomType = 4;
+	optional string gameId = 5;
+	optional bool mingpai = 6;
+	optional int32 roundNum = 7;
+}
+
+
+message SCMatchRole{
+	repeated GameRoleData gameRoleData = 1;
+	optional int32 seated = 2;
+	optional int32 roomType = 3;
+	optional string id = 4;
+	optional string gameId = 5;
+	optional bool mingpai = 6;
+}
+
+
+message SCMatchJoinGame{
+	optional GameRoleData gameRoleData = 1;
+}
+//取消比赛
+message SCMatchCancelGame{
+}
+message MatchGetGameInfoRequest{
+}
+message MatchGetGameInfoResponse{
+	optional GameConfig gameConfig = 1;
+	optional int32 errorCode = 2[default = 1];
+	optional string lockString = 3 ; // 房间号
+}

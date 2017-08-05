@@ -1,0 +1,54 @@
+package com.randioo.doudizhu_server.protocol;
+import "Login.proto";
+import "Role.proto";
+import "Match.proto";
+import "Fight.proto";
+import "MoneyExchange.proto";
+import "Settings.proto";
+import "Heartbeat.proto";
+import "Video.proto";
+import "Heart.proto";
+
+message CS{
+    optional HeartRequest HeartRequest = 1;//心跳
+	optional LoginCheckAccountRequest LoginCheckAccountRequest = 2;
+	optional LoginCreateRoleRequest LoginCreateRoleRequest = 3;
+	optional LoginGetRoleDataRequest LoginGetRoleDataRequest = 4;
+
+	optional RoleRenameRequest RoleRenameRequest = 5;
+
+	optional MatchCreateGameRequest MatchCreateGameRequest = 6;
+	optional MatchJoinGameRequest MatchJoinGameRequest = 7;
+	optional MatchAIRequest MatchAIRequest = 8;
+	optional MatchRoleRequest MatchRoleRequest = 9;
+	optional MatchCancelRequest MatchCancelRequest = 10;
+    optional MatchGetGameInfoRequest MatchGetGameInfoRequest = 11;//房间信息
+ 
+	optional FightReadyRequest FightReadyRequest = 12;
+	optional FightExitGameRequest FightExitGameRequest = 13;
+	optional FightAgreeExitGameRequest FightAgreeExitGameRequest = 14;
+	optional FightCallLandLordRequest FightCallLandLordRequest = 15;
+	optional FightSendCardRequest FightSendCardRequest = 16;
+	optional FightMingPaiRequest FightMingPaiRequest = 17;
+	optional FightRecommandRequest FightRecommandRequest = 18;
+	optional FightGetlastRoundRequest FightGetlastRoundRequest = 19;
+	optional FightRejoinRequest FightRejoinRequest = 20;
+	optional FightAutoRequest FightAutoRequest = 21;
+	optional FightApplyExitGameRequest FightApplyExitGameRequest = 22;
+	optional FightBackMenuRequest FightBackMenuRequest = 23;
+    optional FightGameInfoRequest FightGameInfoRequest = 24;//获取房间玩家信息
+    
+	optional MoneyExchangeRequest MoneyExchangeRequest = 25;
+
+	optional SettingsRequest SettingsRequest = 26;
+
+	optional GetRoleDataRequest GetRoleDataRequest = 27;
+	optional GetSettingsRequest GetSettingsRequest = 28;
+
+
+	optional HeartbeatRequest HeartbeatRequest = 29;
+
+	optional VideoGetRequest VideoGetRequest = 30;
+	optional VideoGetByIdRequest VideoGetByIdRequest = 31;
+	optional VideoGetByRoundRequest VideoGetByRoundRequest = 32;
+} // 32
