@@ -35,6 +35,8 @@ import com.randioo.doudizhu_server.error.CardListPatternException;
 import com.randioo.doudizhu_server.error.CardTypeComparableException;
 import com.randioo.doudizhu_server.module.fight.FightConstant;
 import com.randioo.doudizhu_server.module.fight.component.CardTools;
+import com.randioo.doudizhu_server.module.fight.component.GameInit;
+import com.randioo.doudizhu_server.module.fight.component.LandlordJudger;
 import com.randioo.doudizhu_server.module.fight.component.cardlist.A1;
 import com.randioo.doudizhu_server.module.fight.component.cardlist.A2;
 import com.randioo.doudizhu_server.module.fight.component.cardlist.A2B2C2;
@@ -50,6 +52,10 @@ import com.randioo.doudizhu_server.module.fight.component.cardlist.A4BC;
 import com.randioo.doudizhu_server.module.fight.component.cardlist.ABCDE;
 import com.randioo.doudizhu_server.module.fight.component.cardlist.CardList;
 import com.randioo.doudizhu_server.module.fight.component.cardlist.KQ;
+import com.randioo.doudizhu_server.module.fight.component.dispatch.CardPart;
+import com.randioo.doudizhu_server.module.fight.component.dispatch.DebugDispatcher;
+import com.randioo.doudizhu_server.module.fight.component.dispatch.Dispatcher;
+import com.randioo.doudizhu_server.module.fight.component.dispatch.RandomDispatcher;
 import com.randioo.doudizhu_server.module.login.service.LoginService;
 import com.randioo.doudizhu_server.module.match.service.MatchService;
 import com.randioo.doudizhu_server.module.money.service.MoneyExchangeService;
@@ -150,6 +156,18 @@ public class FightServiceImpl extends ObserveBaseService implements FightService
 
     @Autowired
     private GameDB gameDB;
+
+    @Autowired
+    private RandomDispatcher randomDispatcher;
+
+    @Autowired
+    private DebugDispatcher debugDispatcher;
+
+    @Autowired
+    private LandlordJudger landlordJudger;
+
+    @Autowired
+    private GameInit gameInit;
 
     @Override
     public void init() {
@@ -494,24 +512,43 @@ public class FightServiceImpl extends ObserveBaseService implements FightService
         game.getRecords().add(new ArrayList<CardRecord>());
         game.setGameState(GameState.GAME_START_START);
         // 游戏初始化
-        this.gameInit(game.getGameId());
+        gameInit.init(game);
+        // 分牌
+        this.dispatchCard(gameId);
         // 通知场上积分
         this.callFen(game);
 
-        game.setRound(game.getRound() - 1);
-        SCFightStart.Builder FSBuilder = SCFightStart.newBuilder();
-        for (int i = 0; i < game.getMaxRoleCount(); i++) {
-            FSBuilder.addPaiNum(PaiNum.newBuilder().setSeated(i)
-                    .setNum(game.getRoleIdMap().get(game.getRoleIdList().get(i)).cards.size()));
+        // 剩余局数
+        int remainRoundCount = game.getRound() - 1;
+        game.setRound(remainRoundCount);
+        boolean moGuai = game.isMoGuai();
 
+        SCFightStart.Builder scFightStartBuilder = SCFightStart.newBuilder();
+        scFightStartBuilder.setMoguai(moGuai);
+        scFightStartBuilder.setRoundNum(remainRoundCount);
+
+        for (int i = 0; i < game.getMaxRoleCount(); i++) {
+            String gameRoleId = game.getRoleIdList().get(i);
+            RoleGameInfo roleGameInfo = game.getRoleIdMap().get(gameRoleId);
+            // 该玩家 卡牌数量
+            int cardSize = roleGameInfo.cards.size();
+
+            PaiNum paiNum = PaiNum.newBuilder().setSeated(i).setNum(cardSize).build();
+            scFightStartBuilder.addPaiNum(paiNum);
         }
-        FSBuilder.setMoguai(game.isMoGuai());
-        FSBuilder.setRoundNum(game.getRound());
-        SC sc = SC.newBuilder()
-                .setSCFightCallLandLord(SCFightCallLandLord.newBuilder().setCurrentFen(0)
-                        .setSeated(game.getCurrentRoleIdIndex()).setCountdown(FightConstant.COUNTDOWN / 2).setFen(-1))
+
+        SCFightStart scFightStart = scFightStartBuilder.build();
+
+        int currentFen = 0;
+        int currentSeat = game.getCurrentRoleIdIndex();
+        int callLandlordCountdown = FightConstant.COUNTDOWN / 2;
+        int fen = -1;
+
+        // 叫地主的主推
+        SC scFightCallLandlordSC = SC.newBuilder().setSCFightCallLandLord(SCFightCallLandLord.newBuilder()
+                .setCurrentFen(currentFen).setSeated(currentSeat).setCountdown(callLandlordCountdown).setFen(fen))
                 .build();
-        game.setCurrentStatusSC(sc);
+        game.setCurrentStatusSC(scFightCallLandlordSC);
 
         // 通知每个人 各自的牌
         for (RoleGameInfo info : game.getRoleIdMap().values()) {
@@ -521,24 +558,30 @@ public class FightServiceImpl extends ObserveBaseService implements FightService
             info.scList2.addAll(info.scoreList);
             info.scoreList.clear();
 
-            SessionUtils.sc(info.roleId,
-                    SC.newBuilder().setSCFightStart(FSBuilder.clone().addAllPai(info.cards)).build());
+            // 克隆基础消息
+            SCFightStart.Builder currentGameRoleSCFightStartBuilder = scFightStart.toBuilder();
+            // 发送给每个人的游戏开始通知
+            SCFightStart currentGameRoleSCFightStart = currentGameRoleSCFightStartBuilder.addAllPai(info.cards).build();
+            SC currentGameRoleSCFightStartSC = SC.newBuilder().setSCFightStart(currentGameRoleSCFightStart).build();
+            SessionUtils.sc(info.roleId, currentGameRoleSCFightStartSC);
+            this.notifyObservers(FightConstant.FIGHT_START, info, currentGameRoleSCFightStartSC);
 
-            this.notifyObservers(FightConstant.FIGHT_SEND_CARD, info,
-                    SC.newBuilder().setSCFightStart(FSBuilder.clone().addAllPai(info.cards)).build());
-            SessionUtils.sc(info.roleId, sc);
-            this.notifyObservers(FightConstant.FIGHT_RECORD, info, sc, 1);
+            // 每个人都要通知开始叫地主
+            SessionUtils.sc(info.roleId, scFightCallLandlordSC);
+            this.notifyObservers(FightConstant.FIGHT_START_CALL_LANDLORD, info, scFightCallLandlordSC, 1);
+
             // 所有人的pai 记录到场上所有的录像
-            for (RoleGameInfo info2 : game.getRoleIdMap().values()) {
+            int seat = game.getRoleIdList().indexOf(info.gameRoleId);
+            SC scFightMingPaiSC = SC.newBuilder()
+                    .setSCFightMingPai(SCFightMingPai.newBuilder().addAllPai(info.cards).setSeated(seat).setIsFirst(1))
+                    .build();
 
-                this.notifyObservers(FightConstant.FIGHT_ALL_CARD, info2,
-                        SC.newBuilder()
-                                .setSCFightMingPai(SCFightMingPai.newBuilder().addAllPai(info.cards)
-                                        .setSeated(game.getRoleIdList().indexOf(info.gameRoleId)).setIsFirst(1))
-                                .build());
+            for (RoleGameInfo info2 : game.getRoleIdMap().values()) {
+                this.notifyObservers(FightConstant.FIGHT_ALL_CARD, info2, scFightMingPaiSC);
             }
 
         }
+
         this.notifyObservers(FightConstant.NEXT_ROLE_TO_CALL_LANDLORD, game.getGameId());
     }
 
@@ -559,34 +602,6 @@ public class FightServiceImpl extends ObserveBaseService implements FightService
                 return false;
         }
         return true;
-    }
-
-    /**
-     * 游戏初始化
-     * 
-     * @param gameId
-     * @author wcy 2017年5月31日
-     */
-    private void gameInit(int gameId) {
-        Game game = GameCache.getGameMap().get(gameId);
-        game.setMultiple(0);
-        callFen(game);
-        game.setLandlordGameRoleId(null);
-        game.getLandlordCards().clear();
-        game.setCallLandlordCount(0);
-        game.setMingPaiState(false);
-        game.setFarmerSpring(true);
-        game.setLandLordSpring(true);
-        game.setBomb(0);
-        game.setMoGuai(false);
-        game.setLastCardList(null);
-        // 卡牌初始化
-        for (RoleGameInfo info : game.getRoleIdMap().values()) {
-            info.cards.clear();
-        }
-        // 发牌
-        dispatchCard(game.getGameId());
-
     }
 
     /**
@@ -1277,94 +1292,135 @@ public class FightServiceImpl extends ObserveBaseService implements FightService
     /**
      * 发牌
      */
+    // @Override
+    // public void dispatchCard(int gameId) {
+    // Game game = GameCache.getGameMap().get(gameId);
+    //
+    // int maxCount = game.getMaxRoleCount();
+    // int needCard = 1;
+    // int totalCardCount = (FightConstant.CARDS.length - maxCount) / maxCount;
+    //
+    // int[][] card = {
+    // { 0x11, 0x21, 0x31, 0x41, 0x12, 0x22, 0x32, 0x42, 0x13, 0x23, 0x33, 0x43,
+    // 0x14, 0x24, 0x34, 0x44,
+    // 0x1D },
+    // { 0x15, 0x25, 0x35, 0x49, 0x16, 0x26, 0x36, 0x4A, 0x17, 0x27, 0x3B, 0x4B,
+    // 0x18, 0x28, 0x38, 0x48,
+    // 0x4C },
+    // { 0x19, 0x29, 0x39, 0x45, 0x1A, 0x2A, 0x3A, 0x46, 0x1B, 0x2B, 0x37, 0x47,
+    // 0x1C, 0x2C, 0x3C, 0x0E,
+    // 0x0F } };
+    //
+    // List<Integer> list = new ArrayList<>(FightConstant.CARDS.length);
+    // boolean debug = false;
+    // // 这if没啥用 ，可能调试时用
+    // if (debug) {
+    // for (int i = 0; i < 3; i++) {
+    // String gameRoleId = game.getRoleIdList().get(i);
+    // RoleGameInfo roleGameInfo = game.getRoleIdMap().get(gameRoleId);
+    // for (int j = 0; j < card[i].length; j++) {
+    // int c = card[i][j];
+    // roleGameInfo.cards.add(c);
+    // for (int x = list.size() - 1; x >= 0; x--) {
+    // if (c == list.get(x)) {
+    // list.remove(x);
+    // break;
+    // }
+    // }
+    // }
+    // }
+    // } else {
+    // for (int j = 0; j < needCard; j++) {
+    // // 先添加所有的牌,然后逐一随机拿走
+    // for (int i = 0; i < FightConstant.CARDS.length; i++)
+    // list.add(FightConstant.CARDS[i]);
+    // // 给每个人发牌 ，算法有问题
+    // // TODO
+    // for (int i = 0; i < totalCardCount; i++) {
+    // for (RoleGameInfo roleGameInfo : game.getRoleIdMap().values()) {
+    // int index = RandomUtils.getRandomNum(list.size());
+    // int value = list.get(index);
+    // list.remove(index);
+    //
+    // // // 如果符合条件,就从这个人开始叫地主
+    // // // TODO 判定地主的方法有问题list在不断减少，索引不确定
+    // // if (landlordCardBoxIndex == j && landlordCardIndex ==
+    // // index) {
+    // // // 如果明牌是大小王，则要翻倍
+    // // if ((value == CardTools.C_KING || value ==
+    // // CardTools.C_QUEUE)
+    // // && (game.getGameConfig().getMoguai())) {
+    // // game.setMoGuai(true);
+    // // game.setMultiple(game.getMultiple() * 2);
+    // // this.callFen(game);
+    // // }
+    // //
+    // // // 设置开始叫地主的人的索引
+    // //
+    // game.setCurrentRoleIdIndex(game.getRoleIdList().indexOf(roleGameInfo.gameRoleId));
+    // // }
+    //
+    // roleGameInfo.cards.add(value);
+    // }
+    // }
+    // }
+    //
+    // } // 随机开始叫地主的人
+    // game.setCurrentRoleIdIndex(RandomUtils.getRandomNum(game.getRoleIdList().size()));
+    //
+    // // 对所有玩家的卡牌进行排序
+    // for (RoleGameInfo roleGameInfo : game.getRoleIdMap().values())
+    // Collections.sort(roleGameInfo.cards, hexCardComparator);
+    //
+    // // 剩下的牌是地主牌
+    // game.getLandlordCards().addAll(list);
+    // /*
+    // * for (RoleGameInfo roleGameInfo : game.getRoleIdMap().values()){
+    // * for(int t :
+    // * card[game.getRoleIdList().indexOf(roleGameInfo.gameRoleId)])
+    // * roleGameInfo.cards.add(t); } game.setCurrentRoleIdIndex(0); for(int t
+    // * : landlord) game.getLandlordCards().add(t);
+    // */
+    // }
+
     @Override
     public void dispatchCard(int gameId) {
-        Game game = GameCache.getGameMap().get(gameId);
-        game.setMoGuai(false);
-        for (RoleGameInfo info : game.getRoleIdMap().values())
-            info.cards.clear();
-
+        Game game = this.getGameById(gameId);
+        // 玩家数量
         int maxCount = game.getMaxRoleCount();
-        int needCard = 1;
-        int totalCardCount = (FightConstant.CARDS.length - maxCount) / maxCount;
+        // 使用的卡组数量
+        int needCard = FightConstant.CARD_BOX_COUNT;
+        // 每人手上卡牌的数量
+        int everyPartCount = (FightConstant.CARDS.length - maxCount) / maxCount;
 
-        int[][] card = {
-                { 0x11, 0x21, 0x31, 0x41, 0x12, 0x22, 0x32, 0x42, 0x13, 0x23, 0x33, 0x43, 0x14, 0x24, 0x34, 0x44,
-                        0x1D },
-                { 0x15, 0x25, 0x35, 0x49, 0x16, 0x26, 0x36, 0x4A, 0x17, 0x27, 0x3B, 0x4B, 0x18, 0x28, 0x38, 0x48,
-                        0x4C },
-                { 0x19, 0x29, 0x39, 0x45, 0x1A, 0x2A, 0x3A, 0x46, 0x1B, 0x2B, 0x37, 0x47, 0x1C, 0x2C, 0x3C, 0x0E,
-                        0x0F } };
-
-        List<Integer> list = new ArrayList<>(FightConstant.CARDS.length);
-        boolean debug = false;
-        // 这if没啥用 ，可能调试时用
-        if (debug) {
-            for (int i = 0; i < 3; i++) {
-                String gameRoleId = game.getRoleIdList().get(i);
-                RoleGameInfo roleGameInfo = game.getRoleIdMap().get(gameRoleId);
-                for (int j = 0; j < card[i].length; j++) {
-                    int c = card[i][j];
-                    roleGameInfo.cards.add(c);
-                    for (int x = list.size() - 1; x >= 0; x--) {
-                        if (c == list.get(x)) {
-                            list.remove(x);
-                            break;
-                        }
-                    }
-                }
-            }
-        } else {
+        List<Integer> totalCards = new ArrayList<>(FightConstant.CARDS.length * needCard);
+        for (int i = 0; i < FightConstant.CARDS.length; i++) {
             for (int j = 0; j < needCard; j++) {
-                // 先添加所有的牌,然后逐一随机拿走
-                for (int i = 0; i < FightConstant.CARDS.length; i++)
-                    list.add(FightConstant.CARDS[i]);
-                // 给每个人发牌 ，算法有问题
-                // TODO
-                for (int i = 0; i < totalCardCount; i++) {
-                    for (RoleGameInfo roleGameInfo : game.getRoleIdMap().values()) {
-                        int index = RandomUtils.getRandomNum(list.size());
-                        int value = list.get(index);
-                        list.remove(index);
-
-                        // // 如果符合条件,就从这个人开始叫地主
-                        // // TODO 判定地主的方法有问题list在不断减少，索引不确定
-                        // if (landlordCardBoxIndex == j && landlordCardIndex ==
-                        // index) {
-                        // // 如果明牌是大小王，则要翻倍
-                        // if ((value == CardTools.C_KING || value ==
-                        // CardTools.C_QUEUE)
-                        // && (game.getGameConfig().getMoguai())) {
-                        // game.setMoGuai(true);
-                        // game.setMultiple(game.getMultiple() * 2);
-                        // this.callFen(game);
-                        // }
-                        //
-                        // // 设置开始叫地主的人的索引
-                        // game.setCurrentRoleIdIndex(game.getRoleIdList().indexOf(roleGameInfo.gameRoleId));
-                        // }
-
-                        roleGameInfo.cards.add(value);
-                    }
-                }
+                List<Integer> landlordCards = game.getLandlordCards();
+                landlordCards.add(FightConstant.CARDS[i]);
             }
+        }
+        // 获得发牌器
+        Dispatcher dispatcher = randomDispatcher;
+        // 如果是调试模式则换掉分牌器
+        if (GlobleMap.Boolean(GlobleConstant.ARGS_DISPATCH)) {
+            dispatcher = debugDispatcher;
+        }
 
-        } // 随机开始叫地主的人
-        game.setCurrentRoleIdIndex(RandomUtils.getRandomNum(game.getRoleIdList().size()));
-
-        // 对所有玩家的卡牌进行排序
-        for (RoleGameInfo roleGameInfo : game.getRoleIdMap().values())
+        // 分牌
+        List<CardPart> cardParts = dispatcher.dispatch(totalCards, everyPartCount, maxCount);
+        // 每个人加牌
+        int i = 0;
+        for (RoleGameInfo roleGameInfo : game.getRoleIdMap().values()) {
+            roleGameInfo.cards.addAll(cardParts.get(i));
+            // 卡组排序
             Collections.sort(roleGameInfo.cards, hexCardComparator);
+            i++;
+        }
 
-        // 剩下的牌是地主牌
-        game.getLandlordCards().addAll(list);
-        /*
-         * for (RoleGameInfo roleGameInfo : game.getRoleIdMap().values()){
-         * for(int t :
-         * card[game.getRoleIdList().indexOf(roleGameInfo.gameRoleId)])
-         * roleGameInfo.cards.add(t); } game.setCurrentRoleIdIndex(0); for(int t
-         * : landlord) game.getLandlordCards().add(t);
-         */
+        int landlordSeat = landlordJudger.getLandlord(game.getRoleIdList());
+        // 设置地主的位置，这个人也就是开始出牌的人
+        game.setCurrentRoleIdIndex(landlordSeat);
     }
 
     /**
@@ -1504,9 +1560,13 @@ public class FightServiceImpl extends ObserveBaseService implements FightService
             int resultScore = game.getMultiple();
             if (resultScore == 0) {
                 // 说明没有人叫分，重新发牌
-                this.gameInit(gameId);
-                this.callFen(game);
                 System.out.println("没人叫地主，重新发牌");
+                // 游戏数据初始化
+                gameInit.init(game);
+                // 发牌
+                this.dispatchCard(gameId);
+                // 叫分
+                this.callFen(game);
                 SCFightStart.Builder fightStartBuilder = SCFightStart.newBuilder();
                 for (int i = 0; i < game.getMaxRoleCount(); i++) {
                     fightStartBuilder.addPaiNum(PaiNum.newBuilder().setSeated(i)

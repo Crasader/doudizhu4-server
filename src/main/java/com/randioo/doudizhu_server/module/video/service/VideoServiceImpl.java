@@ -119,7 +119,7 @@ public class VideoServiceImpl extends ObserveBaseService implements
             RoleGameInfo info = (RoleGameInfo) args[0];
             info.scList2.add((SC) args[1]);
         }
-        if(FightConstant.FIGHT_SEND_CARD.equals(msg)) {
+        if(FightConstant.FIGHT_START.equals(msg)) {
             RoleGameInfo info = (RoleGameInfo) args[0];
             info.scList.add((SC) args[1]);
             info.scList2.add((SC) args[1]);
