@@ -14,7 +14,7 @@ message RoleData{
 message GameConfig{
 	optional int32 round = 1;
 	optional int32 di = 2;
-	optional bool moguai = 3;
+	optional bool huangFang = 3;//荒番
 	optional bool mingpai = 4;
 }
 message PaiNum{
@@ -107,4 +107,7 @@ message RoundVideoData{
 message RoleInfo{
       optional int32 roleId =1  ;  
       optional int32 seat = 2 ; //位置
+}
+message Cards{
+	repeated int32 card = 1; //牌
 }

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.randioo.doudizhu_server.entity.po.CardSort;
-import com.randioo.doudizhu_server.error.CardListPatternException;
-import com.randioo.doudizhu_server.error.CardTypeComparableException;
+import com.randioo.doudizhu_server.module.fight.component.CardSort;
 import com.randioo.doudizhu_server.module.fight.component.CardTools;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardListPatternException;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardTypeComparableException;
 
 
 public class KKQQ extends A1{
@@ -25,8 +25,8 @@ public class KKQQ extends A1{
 	public CardList pattern(CardSort cardSort, List<Integer> arr) throws CardListPatternException {
 		if (arr.size() != 4)
 			throw new CardListPatternException();
-		Set<Integer> set = cardSort.getCardSort().get(0);
-		Set<Integer> set2 = cardSort.getCardSort().get(1);
+		Set<Integer> set = cardSort.get(0);
+		Set<Integer> set2 = cardSort.get(1);
 		if (set.size() == 2 && set.contains(14) && set.contains(15)&&set2.size() == 2 && set2.contains(14) && set2.contains(15))
 			return new KKQQ(); 
 		throw new CardListPatternException();
@@ -51,13 +51,13 @@ public class KKQQ extends A1{
 	@Override
 	public void recommand(List<List<Integer>> recommandList, CardSort cardSort, CardList lastCardList,
 			List<Integer> arr) {
-		if (arr.size() < 2 || cardSort.getCardSort().get(0).size() < 2)
+		if (arr.size() < 2 || cardSort.get(0).size() < 2)
 			return;
 		
 		cardSort = cardSort.clone();
 		List<List<Integer>> lists = new ArrayList<>();
-		Set<Integer> set = cardSort.getCardSort().get(0);
-		Set<Integer> set2 = cardSort.getCardSort().get(1);
+		Set<Integer> set = cardSort.get(0);
+		Set<Integer> set2 = cardSort.get(1);
 		if (set.size() == 2 && set.contains(14) && set.contains(15)&&set2.size() == 2 && set2.contains(14) && set2.contains(15)) {
 			List<Integer> list = new ArrayList<>(4);
 			list.add(0xE);
@@ -78,8 +78,8 @@ public class KKQQ extends A1{
 		list.add(0x0E);
 		list.add(0x0E);
 
-		CardSort cardSort = new CardSort();
-		CardTools.fillCardSort(cardSort, list);
+		CardSort cardSort = new CardSort(4);
+		cardSort.remove(list);
 		KKQQ lastCardList = new KKQQ();
 		lastCardList.setNum(3);
 		a1.recommand(recommandList, cardSort, lastCardList, list);

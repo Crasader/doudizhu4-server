@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.randioo.doudizhu_server.entity.po.CardSort;
-import com.randioo.doudizhu_server.error.CardListPatternException;
-import com.randioo.doudizhu_server.error.CardTypeComparableException;
+import com.randioo.doudizhu_server.module.fight.component.CardSort;
 import com.randioo.doudizhu_server.module.fight.component.CardTools;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardListPatternException;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardTypeComparableException;
 
 public class A2 extends A1 {
 	@Override
@@ -25,7 +25,7 @@ public class A2 extends A1 {
 	public CardList pattern(CardSort cardSort, List<Integer> arr) throws CardListPatternException {
 		if (arr.size() != 2)
 			throw new CardListPatternException();
-		Set<Integer> set = cardSort.getCardSort().get(1);
+		Set<Integer> set = cardSort.get(1);
 		if (set.size() == 0)
 			throw new CardListPatternException();
 
@@ -40,7 +40,7 @@ public class A2 extends A1 {
 	@Override
 	public void recommand(List<List<Integer>> recommandList, CardSort cardSort, CardList lastCardList, List<Integer> arr) {
 
-		if (arr.size() < 2 || cardSort.getCardSort().get(1).size() < 1)
+		if (arr.size() < 2 || cardSort.get(1).size() < 1)
 			return;
 
 		CardTools.recommandNumCommonTemplate(recommandList, cardSort, lastCardList, 1, this.getClass());
@@ -63,8 +63,8 @@ public class A2 extends A1 {
 		list.add(0x0E);
 		list.add(0x0F);
 
-		CardSort cardSort = new CardSort();
-		CardTools.fillCardSort(cardSort, list);
+		CardSort cardSort = new CardSort(4);
+		cardSort.fillCardSort(list);
 
 		A2 lastCardList = new A2();
 		lastCardList.setNum(3);

@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.randioo.doudizhu_server.entity.po.CardSort;
-import com.randioo.doudizhu_server.error.CardListPatternException;
-import com.randioo.doudizhu_server.module.fight.component.CardTools;
+import com.randioo.doudizhu_server.module.fight.component.CardSort;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardListPatternException;
 
 public class A4 extends A1 {
 	@Override
@@ -24,7 +23,7 @@ public class A4 extends A1 {
 	public CardList pattern(CardSort cardSort, List<Integer> arr) throws CardListPatternException {
 		if (arr.size() != 4)
 			throw new CardListPatternException();
-		Set<Integer> set = cardSort.getCardSort().get(3);
+		Set<Integer> set = cardSort.get(3);
 		if (set.size() == 0)
 			throw new CardListPatternException();
 
@@ -38,14 +37,14 @@ public class A4 extends A1 {
 	@Override
 	public void recommand(List<List<Integer>> recommandList, CardSort cardSort, CardList lastCardList,
 			List<Integer> arr) {
-		if (arr.size() < 4 || cardSort.getCardSort().get(3).size() < 1)
+		if (arr.size() < 4 || cardSort.get(3).size() < 1)
 			return;
 		
 		cardSort = cardSort.clone();
 		if (lastCardList == null) {
 			// 主动出牌
 			List<List<Integer>> lists = new ArrayList<>();
-			Set<Integer> set = cardSort.getCardSort().get(3);				
+			Set<Integer> set = cardSort.get(3);				
 			for(int pai : set){
 				List<Integer> list = new ArrayList<>(4);
 				for (int k = 0; k < 4; k++)
@@ -62,7 +61,7 @@ public class A4 extends A1 {
 			}else{
 				boolean bomb = (lastCardList.getClass() == A4.class);
 				List<List<Integer>> lists = new ArrayList<>();
-				Set<Integer> set = cardSort.getCardSort().get(3);				
+				Set<Integer> set = cardSort.get(3);				
 				for(int pai : set){
 					if(!( bomb && ((A4)lastCardList).getNum() > pai)){
 						List<Integer> list = new ArrayList<>(4);

@@ -48,4 +48,17 @@ public class FightConstant {
     /** 使用卡牌的数量 */
     public static final int CARD_BOX_COUNT = 2;
 
+    /** 每一组牌的数量 */
+    public static final int EVERY_PART_CARD_COUNT = 25;
+
+    /** 叫挡错误 */
+    public static final int CALL_LANDLORD_ERROR = 3;
+    /** 叫地主完成 */
+    public static final int CALL_LANDLORD_OVER = 0;
+    /** 不叫地主 */
+    public static final int NOT_CALL_SCORE = 1;
+    /** 下一位叫挡 */
+    public static final int NEXT_CALL_SCORE = 2;
+    /** 重新发牌 */
+    public static final int DISPATCH_CARD_AGAIN = 3;
 }

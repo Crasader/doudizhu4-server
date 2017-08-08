@@ -1,5 +1,6 @@
 package com.randioo.doudizhu_server.module.fight.component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,27 +36,19 @@ public class Report {
                 resultMap.put(key, cardMap.get(key));
             }
         }
-        // 是否
+        // 能报道的结果集
         return resultMap;
     }
 
     /**
      * 报道
      * 
-     * @param game
-     * @param cadrdList
+     * cadrdList: 地主手中的牌 ; canReporCardtList:能报道牌的集合; reportCardList:报道的牌
      */
-    public void report(Integer card, List<Integer> reportCardList, List<Integer> cardList) {
-        // 移除7 ， 8 或 王
-        for (int i : cardList) {
-            if (isCardSEqual(i, card)) {
-                reportCardList.add(i);
-            }
-        }
-        // 是小王的话 移除大王
-        if (card == CardTools.C_QUEUE) {
-            reportCardList.add(CardTools.C_KING);
-            reportCardList.add(CardTools.C_KING);
+    public void report(List<Integer> canReporCardtList, List<Integer> reportCardList, List<Integer> cardList) {
+        List<List<Integer>> resultList = reportCard(canReporCardtList, cardList);
+        for (List<Integer> list : resultList) {
+            reportCardList.addAll(list);
         }
         // 从手中牌中 移除报道的牌
         cardList.removeAll(reportCardList);
@@ -64,4 +57,34 @@ public class Report {
     public boolean isCardSEqual(int cardOne, int cardTwo) {
         return CardTools.toNum(cardOne) == CardTools.toNum(cardTwo);
     }
+
+    /**
+     * 报道
+     * 
+     * cadrdList:地主手中的牌
+     * 
+     * @param cadrdList
+     */
+    public List<List<Integer>> reportCard(List<Integer> reportList, List<Integer> cardList) {
+
+        List<List<Integer>> resultList = new ArrayList<>();
+        for (int card : reportList) {
+            List<Integer> oneCardList = new ArrayList<>();
+            // 移除7 ， 8个或 王
+            for (int i : cardList) {
+                if (isCardSEqual(i, card)) {
+                    oneCardList.add(i);
+                }
+            }
+            // 是小王的话 移除大王
+            if (card == CardTools.C_QUEUE) {
+                oneCardList.add(CardTools.C_KING);
+                oneCardList.add(CardTools.C_KING);
+            }
+            resultList.add(oneCardList);
+        }
+        // 从手中牌 满足报道的集合
+        return resultList;
+    }
+
 }

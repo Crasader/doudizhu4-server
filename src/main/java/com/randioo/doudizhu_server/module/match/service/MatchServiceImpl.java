@@ -112,7 +112,7 @@ public class MatchServiceImpl extends ObserveBaseService implements MatchService
                     list.add((RoleMatchRule) matchRule);
 
                 Collections.sort(list);
-                GameConfig config = GameConfig.newBuilder().setDi(3).setMingpai(true).setMoguai(true).setRound(1)
+                GameConfig config = GameConfig.newBuilder().setDi(3).setMingpai(true).setHuangFang(true).setRound(1)
                         .build();
                 Game game = new Game();
                 int gameId = idClassCreator.getId(Game.class);
@@ -481,7 +481,7 @@ public class MatchServiceImpl extends ObserveBaseService implements MatchService
     @Override
     public void matchAI(Role role) {
         int roleId = role.getRoleId();
-        GameConfig config = GameConfig.newBuilder().setDi(1).setMingpai(true).setMoguai(true).setRound(1).build();
+        GameConfig config = GameConfig.newBuilder().setDi(1).setMingpai(true).setHuangFang(true).setRound(1).build();
         Game game = createGame(roleId, config);
         game.setGameType(GameType.GAME_TYPE_MATCH);
         RoleGameInfo tRoleGameInfo = game.getRoleIdMap().get(this.getGameRoleId(game.getGameId(), role.getRoleId()));

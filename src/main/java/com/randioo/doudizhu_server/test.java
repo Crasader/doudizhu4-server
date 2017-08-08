@@ -31,7 +31,7 @@ public class test {
 		host.setMoney(100);
 		
 		Game game = new Game();
-		GameConfig config = GameConfig.newBuilder().setDi(1).setMingpai(true).setMoguai(true).setRound(1).build();
+		GameConfig config = GameConfig.newBuilder().setDi(1).setMingpai(true).setHuangFang(true).setRound(1).build();
 		game.setGameConfig(config);
 		game.setGameId(555555);
 		game.setGameType(GameType.GAME_TYPE_FRIEND);

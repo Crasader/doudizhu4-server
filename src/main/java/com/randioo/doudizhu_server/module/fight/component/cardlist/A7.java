@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.randioo.doudizhu_server.entity.po.CardSort;
-import com.randioo.doudizhu_server.error.CardListPatternException;
-import com.randioo.doudizhu_server.error.CardTypeComparableException;
+import com.randioo.doudizhu_server.module.fight.component.CardSort;
 import com.randioo.doudizhu_server.module.fight.component.CardTools;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardListPatternException;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardTypeComparableException;
 
 public class A7 extends A1{
 
@@ -38,7 +38,7 @@ public class A7 extends A1{
 	public CardList pattern(CardSort cardSort, List<Integer> arr) throws CardListPatternException {
 		if (arr.size() < 7)
 			throw new CardListPatternException();
-		Set<Integer> set = cardSort.getCardSort().get(6);
+		Set<Integer> set = cardSort.get(6);
 		if (set.size() == 0)
 			throw new CardListPatternException();
 		int num = set.iterator().next();
@@ -50,13 +50,13 @@ public class A7 extends A1{
 
 	@Override
 	public void recommand(List<List<Integer>> recommandList, CardSort cardSort, CardList lastCardList,List<Integer> arr) {
-		if (arr.size() < 7 || cardSort.getCardSort().get(6).size() < 1)
+		if (arr.size() < 7 || cardSort.get(6).size() < 1)
 			return;
 		cardSort = cardSort.clone();
 		if (lastCardList == null) {
 			// 主动出牌
 			List<List<Integer>> lists = new ArrayList<>();
-			Set<Integer> set = cardSort.getCardSort().get(6);				
+			Set<Integer> set = cardSort.get(6);				
 			for(int pai : set){
 				List<Integer> list = new ArrayList<>(7);
 				for (int k = 0; k < 7; k++)
@@ -73,7 +73,7 @@ public class A7 extends A1{
 			}else{
 				boolean bomb = (lastCardList.getClass() == A7.class);
 				List<List<Integer>> lists = new ArrayList<>();
-				Set<Integer> set = cardSort.getCardSort().get(6);				
+				Set<Integer> set = cardSort.get(6);				
 				for(int pai : set){
 					if(!( bomb && ((A7)lastCardList).getNum() > pai)){
 						List<Integer> list = new ArrayList<>(7);
@@ -110,8 +110,8 @@ public class A7 extends A1{
 		list.add(0x1B);
 		
 		
-		CardSort cardSort = new CardSort();
-		CardTools.fillCardSort(cardSort, list);
+		CardSort cardSort = new CardSort(4);
+		cardSort.remove(list);
 
 		A7 lastCardList = new A7();
 		lastCardList.setNum(1);

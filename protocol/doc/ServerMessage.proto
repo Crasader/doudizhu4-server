@@ -65,22 +65,29 @@ message SC{
 	optional SCFightAuto SCFightAuto = 49;
 	optional SCFightFinishRejoin SCFightFinishRejoin = 50;
 	optional FightApplyExitGameResponse FightApplyExitGameResponse = 51;//申请退出
-	optional SCFightCallFen SCFightCallFen = 52;//叫分
+	optional SCFightCallScore SCFightCallScore = 52;//叫分
 	optional FightBackMenuResponse FightBackMenuResponse = 53;
     optional SCFightCurrentScore SCFightCurrentScore = 54;//当前积分
     optional FightGameInfoResponse FightGameInfoResponse  = 55;//获取玩家信息
-    optional SCFightMingPaiOnOrOff SCFightMingPaiOnOrOff = 56;//明牌开关 
+    optional SCFightMingPaiShow SCFightMingPaiShow = 56;//明牌按钮组显示 
     optional SCFightSpring SCFightSpring = 57;//春天 
+    optional SCFightReportShow SCFightReportShow = 58;//报道按钮组显示
+    optional SCFightReport SCFightReport = 59;//报道通知
+    optional SCFightButtonDisappear SCFightButtonDisappear = 60;//按钮消失
+    optional FightReportResponse FightReportResponse = 61;//请求报道
+    optional SCFightPlayReportShow SCFightPlayReportShow = 62;//报道后 是否打本局按钮显示
+    optional SCFightPlayReport SCFightPlayReport = 63;//报道后 是否打本局通知
+    optional FightPlayReportResponse FightPlayReportResponse = 64;//报道后 请求是否打
     
-	optional MoneyExchangeResponse MoneyExchangeResponse = 58;//燃点币游戏币（欢乐豆）互换
-	optional SettingsResponse SettingsResponse = 59;//设置
+	optional MoneyExchangeResponse MoneyExchangeResponse = 65;//燃点币游戏币（欢乐豆）互换
+	optional SettingsResponse SettingsResponse = 66;//设置
 
-	optional GetRoleDataResponse GetRoleDataResponse = 60;
-	optional GetSettingsResponse GetSettingsResponse = 61;//设置
+	optional GetRoleDataResponse GetRoleDataResponse = 67;
+	optional GetSettingsResponse GetSettingsResponse = 68;//设置
 	
-	optional HeartbeatResponse HeartbeatResponse = 62;
+	optional HeartbeatResponse HeartbeatResponse = 69;
 
-	optional VideoGetResponse VideoGetResponse = 63;
-	optional VideoGetByIdResponse VideoGetByIdResponse = 64;
-	optional VideoGetByRoundResponse VideoGetByRoundResponse = 65;
-} // 65
+	optional VideoGetResponse VideoGetResponse = 70;
+	optional VideoGetByIdResponse VideoGetByIdResponse = 71;
+	optional VideoGetByRoundResponse VideoGetByRoundResponse = 72;
+} // 72

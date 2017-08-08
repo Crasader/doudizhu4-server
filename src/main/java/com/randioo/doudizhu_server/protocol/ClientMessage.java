@@ -203,57 +203,71 @@ public final class ClientMessage {
     public boolean hasFightGameInfoRequest() { return hasFightGameInfoRequest; }
     public com.randioo.doudizhu_server.protocol.Fight.FightGameInfoRequest getFightGameInfoRequest() { return fightGameInfoRequest_; }
     
-    // optional .com.randioo.doudizhu_server.protocol.MoneyExchangeRequest MoneyExchangeRequest = 25;
-    public static final int MONEYEXCHANGEREQUEST_FIELD_NUMBER = 25;
+    // optional .com.randioo.doudizhu_server.protocol.FightReportRequest FightReportRequest = 25;
+    public static final int FIGHTREPORTREQUEST_FIELD_NUMBER = 25;
+    private boolean hasFightReportRequest;
+    private com.randioo.doudizhu_server.protocol.Fight.FightReportRequest fightReportRequest_;
+    public boolean hasFightReportRequest() { return hasFightReportRequest; }
+    public com.randioo.doudizhu_server.protocol.Fight.FightReportRequest getFightReportRequest() { return fightReportRequest_; }
+    
+    // optional .com.randioo.doudizhu_server.protocol.FightPlayReportRequest FightPlayReportRequest = 26;
+    public static final int FIGHTPLAYREPORTREQUEST_FIELD_NUMBER = 26;
+    private boolean hasFightPlayReportRequest;
+    private com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest fightPlayReportRequest_;
+    public boolean hasFightPlayReportRequest() { return hasFightPlayReportRequest; }
+    public com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest getFightPlayReportRequest() { return fightPlayReportRequest_; }
+    
+    // optional .com.randioo.doudizhu_server.protocol.MoneyExchangeRequest MoneyExchangeRequest = 27;
+    public static final int MONEYEXCHANGEREQUEST_FIELD_NUMBER = 27;
     private boolean hasMoneyExchangeRequest;
     private com.randioo.doudizhu_server.protocol.MoneyExchange.MoneyExchangeRequest moneyExchangeRequest_;
     public boolean hasMoneyExchangeRequest() { return hasMoneyExchangeRequest; }
     public com.randioo.doudizhu_server.protocol.MoneyExchange.MoneyExchangeRequest getMoneyExchangeRequest() { return moneyExchangeRequest_; }
     
-    // optional .com.randioo.doudizhu_server.protocol.SettingsRequest SettingsRequest = 26;
-    public static final int SETTINGSREQUEST_FIELD_NUMBER = 26;
+    // optional .com.randioo.doudizhu_server.protocol.SettingsRequest SettingsRequest = 28;
+    public static final int SETTINGSREQUEST_FIELD_NUMBER = 28;
     private boolean hasSettingsRequest;
     private com.randioo.doudizhu_server.protocol.Settings.SettingsRequest settingsRequest_;
     public boolean hasSettingsRequest() { return hasSettingsRequest; }
     public com.randioo.doudizhu_server.protocol.Settings.SettingsRequest getSettingsRequest() { return settingsRequest_; }
     
-    // optional .com.randioo.doudizhu_server.protocol.GetRoleDataRequest GetRoleDataRequest = 27;
-    public static final int GETROLEDATAREQUEST_FIELD_NUMBER = 27;
+    // optional .com.randioo.doudizhu_server.protocol.GetRoleDataRequest GetRoleDataRequest = 29;
+    public static final int GETROLEDATAREQUEST_FIELD_NUMBER = 29;
     private boolean hasGetRoleDataRequest;
     private com.randioo.doudizhu_server.protocol.Role.GetRoleDataRequest getRoleDataRequest_;
     public boolean hasGetRoleDataRequest() { return hasGetRoleDataRequest; }
     public com.randioo.doudizhu_server.protocol.Role.GetRoleDataRequest getGetRoleDataRequest() { return getRoleDataRequest_; }
     
-    // optional .com.randioo.doudizhu_server.protocol.GetSettingsRequest GetSettingsRequest = 28;
-    public static final int GETSETTINGSREQUEST_FIELD_NUMBER = 28;
+    // optional .com.randioo.doudizhu_server.protocol.GetSettingsRequest GetSettingsRequest = 30;
+    public static final int GETSETTINGSREQUEST_FIELD_NUMBER = 30;
     private boolean hasGetSettingsRequest;
     private com.randioo.doudizhu_server.protocol.Settings.GetSettingsRequest getSettingsRequest_;
     public boolean hasGetSettingsRequest() { return hasGetSettingsRequest; }
     public com.randioo.doudizhu_server.protocol.Settings.GetSettingsRequest getGetSettingsRequest() { return getSettingsRequest_; }
     
-    // optional .com.randioo.doudizhu_server.protocol.HeartbeatRequest HeartbeatRequest = 29;
-    public static final int HEARTBEATREQUEST_FIELD_NUMBER = 29;
+    // optional .com.randioo.doudizhu_server.protocol.HeartbeatRequest HeartbeatRequest = 31;
+    public static final int HEARTBEATREQUEST_FIELD_NUMBER = 31;
     private boolean hasHeartbeatRequest;
     private com.randioo.doudizhu_server.protocol.Heartbeat.HeartbeatRequest heartbeatRequest_;
     public boolean hasHeartbeatRequest() { return hasHeartbeatRequest; }
     public com.randioo.doudizhu_server.protocol.Heartbeat.HeartbeatRequest getHeartbeatRequest() { return heartbeatRequest_; }
     
-    // optional .com.randioo.doudizhu_server.protocol.VideoGetRequest VideoGetRequest = 30;
-    public static final int VIDEOGETREQUEST_FIELD_NUMBER = 30;
+    // optional .com.randioo.doudizhu_server.protocol.VideoGetRequest VideoGetRequest = 32;
+    public static final int VIDEOGETREQUEST_FIELD_NUMBER = 32;
     private boolean hasVideoGetRequest;
     private com.randioo.doudizhu_server.protocol.Video.VideoGetRequest videoGetRequest_;
     public boolean hasVideoGetRequest() { return hasVideoGetRequest; }
     public com.randioo.doudizhu_server.protocol.Video.VideoGetRequest getVideoGetRequest() { return videoGetRequest_; }
     
-    // optional .com.randioo.doudizhu_server.protocol.VideoGetByIdRequest VideoGetByIdRequest = 31;
-    public static final int VIDEOGETBYIDREQUEST_FIELD_NUMBER = 31;
+    // optional .com.randioo.doudizhu_server.protocol.VideoGetByIdRequest VideoGetByIdRequest = 33;
+    public static final int VIDEOGETBYIDREQUEST_FIELD_NUMBER = 33;
     private boolean hasVideoGetByIdRequest;
     private com.randioo.doudizhu_server.protocol.Video.VideoGetByIdRequest videoGetByIdRequest_;
     public boolean hasVideoGetByIdRequest() { return hasVideoGetByIdRequest; }
     public com.randioo.doudizhu_server.protocol.Video.VideoGetByIdRequest getVideoGetByIdRequest() { return videoGetByIdRequest_; }
     
-    // optional .com.randioo.doudizhu_server.protocol.VideoGetByRoundRequest VideoGetByRoundRequest = 32;
-    public static final int VIDEOGETBYROUNDREQUEST_FIELD_NUMBER = 32;
+    // optional .com.randioo.doudizhu_server.protocol.VideoGetByRoundRequest VideoGetByRoundRequest = 34;
+    public static final int VIDEOGETBYROUNDREQUEST_FIELD_NUMBER = 34;
     private boolean hasVideoGetByRoundRequest;
     private com.randioo.doudizhu_server.protocol.Video.VideoGetByRoundRequest videoGetByRoundRequest_;
     public boolean hasVideoGetByRoundRequest() { return hasVideoGetByRoundRequest; }
@@ -284,6 +298,8 @@ public final class ClientMessage {
       fightApplyExitGameRequest_ = com.randioo.doudizhu_server.protocol.Fight.FightApplyExitGameRequest.getDefaultInstance();
       fightBackMenuRequest_ = com.randioo.doudizhu_server.protocol.Fight.FightBackMenuRequest.getDefaultInstance();
       fightGameInfoRequest_ = com.randioo.doudizhu_server.protocol.Fight.FightGameInfoRequest.getDefaultInstance();
+      fightReportRequest_ = com.randioo.doudizhu_server.protocol.Fight.FightReportRequest.getDefaultInstance();
+      fightPlayReportRequest_ = com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest.getDefaultInstance();
       moneyExchangeRequest_ = com.randioo.doudizhu_server.protocol.MoneyExchange.MoneyExchangeRequest.getDefaultInstance();
       settingsRequest_ = com.randioo.doudizhu_server.protocol.Settings.SettingsRequest.getDefaultInstance();
       getRoleDataRequest_ = com.randioo.doudizhu_server.protocol.Role.GetRoleDataRequest.getDefaultInstance();
@@ -372,29 +388,35 @@ public final class ClientMessage {
       if (hasFightGameInfoRequest()) {
         output.writeMessage(24, getFightGameInfoRequest());
       }
+      if (hasFightReportRequest()) {
+        output.writeMessage(25, getFightReportRequest());
+      }
+      if (hasFightPlayReportRequest()) {
+        output.writeMessage(26, getFightPlayReportRequest());
+      }
       if (hasMoneyExchangeRequest()) {
-        output.writeMessage(25, getMoneyExchangeRequest());
+        output.writeMessage(27, getMoneyExchangeRequest());
       }
       if (hasSettingsRequest()) {
-        output.writeMessage(26, getSettingsRequest());
+        output.writeMessage(28, getSettingsRequest());
       }
       if (hasGetRoleDataRequest()) {
-        output.writeMessage(27, getGetRoleDataRequest());
+        output.writeMessage(29, getGetRoleDataRequest());
       }
       if (hasGetSettingsRequest()) {
-        output.writeMessage(28, getGetSettingsRequest());
+        output.writeMessage(30, getGetSettingsRequest());
       }
       if (hasHeartbeatRequest()) {
-        output.writeMessage(29, getHeartbeatRequest());
+        output.writeMessage(31, getHeartbeatRequest());
       }
       if (hasVideoGetRequest()) {
-        output.writeMessage(30, getVideoGetRequest());
+        output.writeMessage(32, getVideoGetRequest());
       }
       if (hasVideoGetByIdRequest()) {
-        output.writeMessage(31, getVideoGetByIdRequest());
+        output.writeMessage(33, getVideoGetByIdRequest());
       }
       if (hasVideoGetByRoundRequest()) {
-        output.writeMessage(32, getVideoGetByRoundRequest());
+        output.writeMessage(34, getVideoGetByRoundRequest());
       }
       getUnknownFields().writeTo(output);
     }
@@ -501,37 +523,45 @@ public final class ClientMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(24, getFightGameInfoRequest());
       }
+      if (hasFightReportRequest()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(25, getFightReportRequest());
+      }
+      if (hasFightPlayReportRequest()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(26, getFightPlayReportRequest());
+      }
       if (hasMoneyExchangeRequest()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(25, getMoneyExchangeRequest());
+          .computeMessageSize(27, getMoneyExchangeRequest());
       }
       if (hasSettingsRequest()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(26, getSettingsRequest());
+          .computeMessageSize(28, getSettingsRequest());
       }
       if (hasGetRoleDataRequest()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(27, getGetRoleDataRequest());
+          .computeMessageSize(29, getGetRoleDataRequest());
       }
       if (hasGetSettingsRequest()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(28, getGetSettingsRequest());
+          .computeMessageSize(30, getGetSettingsRequest());
       }
       if (hasHeartbeatRequest()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(29, getHeartbeatRequest());
+          .computeMessageSize(31, getHeartbeatRequest());
       }
       if (hasVideoGetRequest()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(30, getVideoGetRequest());
+          .computeMessageSize(32, getVideoGetRequest());
       }
       if (hasVideoGetByIdRequest()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(31, getVideoGetByIdRequest());
+          .computeMessageSize(33, getVideoGetByIdRequest());
       }
       if (hasVideoGetByRoundRequest()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(32, getVideoGetByRoundRequest());
+          .computeMessageSize(34, getVideoGetByRoundRequest());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -762,6 +792,12 @@ public final class ClientMessage {
         }
         if (other.hasFightGameInfoRequest()) {
           mergeFightGameInfoRequest(other.getFightGameInfoRequest());
+        }
+        if (other.hasFightReportRequest()) {
+          mergeFightReportRequest(other.getFightReportRequest());
+        }
+        if (other.hasFightPlayReportRequest()) {
+          mergeFightPlayReportRequest(other.getFightPlayReportRequest());
         }
         if (other.hasMoneyExchangeRequest()) {
           mergeMoneyExchangeRequest(other.getMoneyExchangeRequest());
@@ -1029,6 +1065,24 @@ public final class ClientMessage {
               break;
             }
             case 202: {
+              com.randioo.doudizhu_server.protocol.Fight.FightReportRequest.Builder subBuilder = com.randioo.doudizhu_server.protocol.Fight.FightReportRequest.newBuilder();
+              if (hasFightReportRequest()) {
+                subBuilder.mergeFrom(getFightReportRequest());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setFightReportRequest(subBuilder.buildPartial());
+              break;
+            }
+            case 210: {
+              com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest.Builder subBuilder = com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest.newBuilder();
+              if (hasFightPlayReportRequest()) {
+                subBuilder.mergeFrom(getFightPlayReportRequest());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setFightPlayReportRequest(subBuilder.buildPartial());
+              break;
+            }
+            case 218: {
               com.randioo.doudizhu_server.protocol.MoneyExchange.MoneyExchangeRequest.Builder subBuilder = com.randioo.doudizhu_server.protocol.MoneyExchange.MoneyExchangeRequest.newBuilder();
               if (hasMoneyExchangeRequest()) {
                 subBuilder.mergeFrom(getMoneyExchangeRequest());
@@ -1037,7 +1091,7 @@ public final class ClientMessage {
               setMoneyExchangeRequest(subBuilder.buildPartial());
               break;
             }
-            case 210: {
+            case 226: {
               com.randioo.doudizhu_server.protocol.Settings.SettingsRequest.Builder subBuilder = com.randioo.doudizhu_server.protocol.Settings.SettingsRequest.newBuilder();
               if (hasSettingsRequest()) {
                 subBuilder.mergeFrom(getSettingsRequest());
@@ -1046,7 +1100,7 @@ public final class ClientMessage {
               setSettingsRequest(subBuilder.buildPartial());
               break;
             }
-            case 218: {
+            case 234: {
               com.randioo.doudizhu_server.protocol.Role.GetRoleDataRequest.Builder subBuilder = com.randioo.doudizhu_server.protocol.Role.GetRoleDataRequest.newBuilder();
               if (hasGetRoleDataRequest()) {
                 subBuilder.mergeFrom(getGetRoleDataRequest());
@@ -1055,7 +1109,7 @@ public final class ClientMessage {
               setGetRoleDataRequest(subBuilder.buildPartial());
               break;
             }
-            case 226: {
+            case 242: {
               com.randioo.doudizhu_server.protocol.Settings.GetSettingsRequest.Builder subBuilder = com.randioo.doudizhu_server.protocol.Settings.GetSettingsRequest.newBuilder();
               if (hasGetSettingsRequest()) {
                 subBuilder.mergeFrom(getGetSettingsRequest());
@@ -1064,7 +1118,7 @@ public final class ClientMessage {
               setGetSettingsRequest(subBuilder.buildPartial());
               break;
             }
-            case 234: {
+            case 250: {
               com.randioo.doudizhu_server.protocol.Heartbeat.HeartbeatRequest.Builder subBuilder = com.randioo.doudizhu_server.protocol.Heartbeat.HeartbeatRequest.newBuilder();
               if (hasHeartbeatRequest()) {
                 subBuilder.mergeFrom(getHeartbeatRequest());
@@ -1073,7 +1127,7 @@ public final class ClientMessage {
               setHeartbeatRequest(subBuilder.buildPartial());
               break;
             }
-            case 242: {
+            case 258: {
               com.randioo.doudizhu_server.protocol.Video.VideoGetRequest.Builder subBuilder = com.randioo.doudizhu_server.protocol.Video.VideoGetRequest.newBuilder();
               if (hasVideoGetRequest()) {
                 subBuilder.mergeFrom(getVideoGetRequest());
@@ -1082,7 +1136,7 @@ public final class ClientMessage {
               setVideoGetRequest(subBuilder.buildPartial());
               break;
             }
-            case 250: {
+            case 266: {
               com.randioo.doudizhu_server.protocol.Video.VideoGetByIdRequest.Builder subBuilder = com.randioo.doudizhu_server.protocol.Video.VideoGetByIdRequest.newBuilder();
               if (hasVideoGetByIdRequest()) {
                 subBuilder.mergeFrom(getVideoGetByIdRequest());
@@ -1091,7 +1145,7 @@ public final class ClientMessage {
               setVideoGetByIdRequest(subBuilder.buildPartial());
               break;
             }
-            case 258: {
+            case 274: {
               com.randioo.doudizhu_server.protocol.Video.VideoGetByRoundRequest.Builder subBuilder = com.randioo.doudizhu_server.protocol.Video.VideoGetByRoundRequest.newBuilder();
               if (hasVideoGetByRoundRequest()) {
                 subBuilder.mergeFrom(getVideoGetByRoundRequest());
@@ -1993,7 +2047,81 @@ public final class ClientMessage {
         return this;
       }
       
-      // optional .com.randioo.doudizhu_server.protocol.MoneyExchangeRequest MoneyExchangeRequest = 25;
+      // optional .com.randioo.doudizhu_server.protocol.FightReportRequest FightReportRequest = 25;
+      public boolean hasFightReportRequest() {
+        return result.hasFightReportRequest();
+      }
+      public com.randioo.doudizhu_server.protocol.Fight.FightReportRequest getFightReportRequest() {
+        return result.getFightReportRequest();
+      }
+      public Builder setFightReportRequest(com.randioo.doudizhu_server.protocol.Fight.FightReportRequest value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        result.hasFightReportRequest = true;
+        result.fightReportRequest_ = value;
+        return this;
+      }
+      public Builder setFightReportRequest(com.randioo.doudizhu_server.protocol.Fight.FightReportRequest.Builder builderForValue) {
+        result.hasFightReportRequest = true;
+        result.fightReportRequest_ = builderForValue.build();
+        return this;
+      }
+      public Builder mergeFightReportRequest(com.randioo.doudizhu_server.protocol.Fight.FightReportRequest value) {
+        if (result.hasFightReportRequest() &&
+            result.fightReportRequest_ != com.randioo.doudizhu_server.protocol.Fight.FightReportRequest.getDefaultInstance()) {
+          result.fightReportRequest_ =
+            com.randioo.doudizhu_server.protocol.Fight.FightReportRequest.newBuilder(result.fightReportRequest_).mergeFrom(value).buildPartial();
+        } else {
+          result.fightReportRequest_ = value;
+        }
+        result.hasFightReportRequest = true;
+        return this;
+      }
+      public Builder clearFightReportRequest() {
+        result.hasFightReportRequest = false;
+        result.fightReportRequest_ = com.randioo.doudizhu_server.protocol.Fight.FightReportRequest.getDefaultInstance();
+        return this;
+      }
+      
+      // optional .com.randioo.doudizhu_server.protocol.FightPlayReportRequest FightPlayReportRequest = 26;
+      public boolean hasFightPlayReportRequest() {
+        return result.hasFightPlayReportRequest();
+      }
+      public com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest getFightPlayReportRequest() {
+        return result.getFightPlayReportRequest();
+      }
+      public Builder setFightPlayReportRequest(com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        result.hasFightPlayReportRequest = true;
+        result.fightPlayReportRequest_ = value;
+        return this;
+      }
+      public Builder setFightPlayReportRequest(com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest.Builder builderForValue) {
+        result.hasFightPlayReportRequest = true;
+        result.fightPlayReportRequest_ = builderForValue.build();
+        return this;
+      }
+      public Builder mergeFightPlayReportRequest(com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest value) {
+        if (result.hasFightPlayReportRequest() &&
+            result.fightPlayReportRequest_ != com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest.getDefaultInstance()) {
+          result.fightPlayReportRequest_ =
+            com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest.newBuilder(result.fightPlayReportRequest_).mergeFrom(value).buildPartial();
+        } else {
+          result.fightPlayReportRequest_ = value;
+        }
+        result.hasFightPlayReportRequest = true;
+        return this;
+      }
+      public Builder clearFightPlayReportRequest() {
+        result.hasFightPlayReportRequest = false;
+        result.fightPlayReportRequest_ = com.randioo.doudizhu_server.protocol.Fight.FightPlayReportRequest.getDefaultInstance();
+        return this;
+      }
+      
+      // optional .com.randioo.doudizhu_server.protocol.MoneyExchangeRequest MoneyExchangeRequest = 27;
       public boolean hasMoneyExchangeRequest() {
         return result.hasMoneyExchangeRequest();
       }
@@ -2030,7 +2158,7 @@ public final class ClientMessage {
         return this;
       }
       
-      // optional .com.randioo.doudizhu_server.protocol.SettingsRequest SettingsRequest = 26;
+      // optional .com.randioo.doudizhu_server.protocol.SettingsRequest SettingsRequest = 28;
       public boolean hasSettingsRequest() {
         return result.hasSettingsRequest();
       }
@@ -2067,7 +2195,7 @@ public final class ClientMessage {
         return this;
       }
       
-      // optional .com.randioo.doudizhu_server.protocol.GetRoleDataRequest GetRoleDataRequest = 27;
+      // optional .com.randioo.doudizhu_server.protocol.GetRoleDataRequest GetRoleDataRequest = 29;
       public boolean hasGetRoleDataRequest() {
         return result.hasGetRoleDataRequest();
       }
@@ -2104,7 +2232,7 @@ public final class ClientMessage {
         return this;
       }
       
-      // optional .com.randioo.doudizhu_server.protocol.GetSettingsRequest GetSettingsRequest = 28;
+      // optional .com.randioo.doudizhu_server.protocol.GetSettingsRequest GetSettingsRequest = 30;
       public boolean hasGetSettingsRequest() {
         return result.hasGetSettingsRequest();
       }
@@ -2141,7 +2269,7 @@ public final class ClientMessage {
         return this;
       }
       
-      // optional .com.randioo.doudizhu_server.protocol.HeartbeatRequest HeartbeatRequest = 29;
+      // optional .com.randioo.doudizhu_server.protocol.HeartbeatRequest HeartbeatRequest = 31;
       public boolean hasHeartbeatRequest() {
         return result.hasHeartbeatRequest();
       }
@@ -2178,7 +2306,7 @@ public final class ClientMessage {
         return this;
       }
       
-      // optional .com.randioo.doudizhu_server.protocol.VideoGetRequest VideoGetRequest = 30;
+      // optional .com.randioo.doudizhu_server.protocol.VideoGetRequest VideoGetRequest = 32;
       public boolean hasVideoGetRequest() {
         return result.hasVideoGetRequest();
       }
@@ -2215,7 +2343,7 @@ public final class ClientMessage {
         return this;
       }
       
-      // optional .com.randioo.doudizhu_server.protocol.VideoGetByIdRequest VideoGetByIdRequest = 31;
+      // optional .com.randioo.doudizhu_server.protocol.VideoGetByIdRequest VideoGetByIdRequest = 33;
       public boolean hasVideoGetByIdRequest() {
         return result.hasVideoGetByIdRequest();
       }
@@ -2252,7 +2380,7 @@ public final class ClientMessage {
         return this;
       }
       
-      // optional .com.randioo.doudizhu_server.protocol.VideoGetByRoundRequest VideoGetByRoundRequest = 32;
+      // optional .com.randioo.doudizhu_server.protocol.VideoGetByRoundRequest VideoGetByRoundRequest = 34;
       public boolean hasVideoGetByRoundRequest() {
         return result.hasVideoGetByRoundRequest();
       }
@@ -2319,7 +2447,7 @@ public final class ClientMessage {
       "zhu_server.protocol\032\013Login.proto\032\nRole.p" +
       "roto\032\013Match.proto\032\013Fight.proto\032\023MoneyExc" +
       "hange.proto\032\016Settings.proto\032\017Heartbeat.p" +
-      "roto\032\013Video.proto\032\013Heart.proto\"\242\026\n\002CS\022H\n" +
+      "roto\032\013Video.proto\032\013Heart.proto\"\326\027\n\002CS\022H\n" +
       "\014HeartRequest\030\001 \001(\01322.com.randioo.doudiz" +
       "hu_server.protocol.HeartRequest\022`\n\030Login" +
       "CheckAccountRequest\030\002 \001(\0132>.com.randioo." +
@@ -2373,25 +2501,29 @@ public final class ClientMessage {
       "t\030\027 \001(\0132:.com.randioo.doudizhu_server.pr" +
       "otocol.FightBackMenuRequest\022X\n\024FightGame" +
       "InfoRequest\030\030 \001(\0132:.com.randioo.doudizhu" +
-      "_server.protocol.FightGameInfoRequest\022X\n" +
-      "\024MoneyExchangeRequest\030\031 \001(\0132:.com.randio",
-      "o.doudizhu_server.protocol.MoneyExchange" +
-      "Request\022N\n\017SettingsRequest\030\032 \001(\01325.com.r" +
-      "andioo.doudizhu_server.protocol.Settings" +
-      "Request\022T\n\022GetRoleDataRequest\030\033 \001(\01328.co" +
-      "m.randioo.doudizhu_server.protocol.GetRo" +
-      "leDataRequest\022T\n\022GetSettingsRequest\030\034 \001(" +
-      "\01328.com.randioo.doudizhu_server.protocol" +
-      ".GetSettingsRequest\022P\n\020HeartbeatRequest\030" +
-      "\035 \001(\01326.com.randioo.doudizhu_server.prot" +
-      "ocol.HeartbeatRequest\022N\n\017VideoGetRequest",
-      "\030\036 \001(\01325.com.randioo.doudizhu_server.pro" +
-      "tocol.VideoGetRequest\022V\n\023VideoGetByIdReq" +
-      "uest\030\037 \001(\01329.com.randioo.doudizhu_server" +
-      ".protocol.VideoGetByIdRequest\022\\\n\026VideoGe" +
-      "tByRoundRequest\030  \001(\0132<.com.randioo.doud" +
-      "izhu_server.protocol.VideoGetByRoundRequ" +
-      "est"
+      "_server.protocol.FightGameInfoRequest\022T\n" +
+      "\022FightReportRequest\030\031 \001(\01328.com.randioo.",
+      "doudizhu_server.protocol.FightReportRequ" +
+      "est\022\\\n\026FightPlayReportRequest\030\032 \001(\0132<.co" +
+      "m.randioo.doudizhu_server.protocol.Fight" +
+      "PlayReportRequest\022X\n\024MoneyExchangeReques" +
+      "t\030\033 \001(\0132:.com.randioo.doudizhu_server.pr" +
+      "otocol.MoneyExchangeRequest\022N\n\017SettingsR" +
+      "equest\030\034 \001(\01325.com.randioo.doudizhu_serv" +
+      "er.protocol.SettingsRequest\022T\n\022GetRoleDa" +
+      "taRequest\030\035 \001(\01328.com.randioo.doudizhu_s" +
+      "erver.protocol.GetRoleDataRequest\022T\n\022Get",
+      "SettingsRequest\030\036 \001(\01328.com.randioo.doud" +
+      "izhu_server.protocol.GetSettingsRequest\022" +
+      "P\n\020HeartbeatRequest\030\037 \001(\01326.com.randioo." +
+      "doudizhu_server.protocol.HeartbeatReques" +
+      "t\022N\n\017VideoGetRequest\030  \001(\01325.com.randioo" +
+      ".doudizhu_server.protocol.VideoGetReques" +
+      "t\022V\n\023VideoGetByIdRequest\030! \001(\01329.com.ran" +
+      "dioo.doudizhu_server.protocol.VideoGetBy" +
+      "IdRequest\022\\\n\026VideoGetByRoundRequest\030\" \001(" +
+      "\0132<.com.randioo.doudizhu_server.protocol",
+      ".VideoGetByRoundRequest"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2403,7 +2535,7 @@ public final class ClientMessage {
           internal_static_com_randioo_doudizhu_server_protocol_CS_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_randioo_doudizhu_server_protocol_CS_descriptor,
-              new java.lang.String[] { "HeartRequest", "LoginCheckAccountRequest", "LoginCreateRoleRequest", "LoginGetRoleDataRequest", "RoleRenameRequest", "MatchCreateGameRequest", "MatchJoinGameRequest", "MatchAIRequest", "MatchRoleRequest", "MatchCancelRequest", "MatchGetGameInfoRequest", "FightReadyRequest", "FightExitGameRequest", "FightAgreeExitGameRequest", "FightCallLandLordRequest", "FightSendCardRequest", "FightMingPaiRequest", "FightRecommandRequest", "FightGetlastRoundRequest", "FightRejoinRequest", "FightAutoRequest", "FightApplyExitGameRequest", "FightBackMenuRequest", "FightGameInfoRequest", "MoneyExchangeRequest", "SettingsRequest", "GetRoleDataRequest", "GetSettingsRequest", "HeartbeatRequest", "VideoGetRequest", "VideoGetByIdRequest", "VideoGetByRoundRequest", },
+              new java.lang.String[] { "HeartRequest", "LoginCheckAccountRequest", "LoginCreateRoleRequest", "LoginGetRoleDataRequest", "RoleRenameRequest", "MatchCreateGameRequest", "MatchJoinGameRequest", "MatchAIRequest", "MatchRoleRequest", "MatchCancelRequest", "MatchGetGameInfoRequest", "FightReadyRequest", "FightExitGameRequest", "FightAgreeExitGameRequest", "FightCallLandLordRequest", "FightSendCardRequest", "FightMingPaiRequest", "FightRecommandRequest", "FightGetlastRoundRequest", "FightRejoinRequest", "FightAutoRequest", "FightApplyExitGameRequest", "FightBackMenuRequest", "FightGameInfoRequest", "FightReportRequest", "FightPlayReportRequest", "MoneyExchangeRequest", "SettingsRequest", "GetRoleDataRequest", "GetSettingsRequest", "HeartbeatRequest", "VideoGetRequest", "VideoGetByIdRequest", "VideoGetByRoundRequest", },
               com.randioo.doudizhu_server.protocol.ClientMessage.CS.class,
               com.randioo.doudizhu_server.protocol.ClientMessage.CS.Builder.class);
           return null;

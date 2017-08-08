@@ -817,12 +817,12 @@ public final class Entity {
     public boolean hasDi() { return hasDi; }
     public int getDi() { return di_; }
     
-    // optional bool moguai = 3;
-    public static final int MOGUAI_FIELD_NUMBER = 3;
-    private boolean hasMoguai;
-    private boolean moguai_ = false;
-    public boolean hasMoguai() { return hasMoguai; }
-    public boolean getMoguai() { return moguai_; }
+    // optional bool huangFang = 3;
+    public static final int HUANGFANG_FIELD_NUMBER = 3;
+    private boolean hasHuangFang;
+    private boolean huangFang_ = false;
+    public boolean hasHuangFang() { return hasHuangFang; }
+    public boolean getHuangFang() { return huangFang_; }
     
     // optional bool mingpai = 4;
     public static final int MINGPAI_FIELD_NUMBER = 4;
@@ -846,8 +846,8 @@ public final class Entity {
       if (hasDi()) {
         output.writeInt32(2, getDi());
       }
-      if (hasMoguai()) {
-        output.writeBool(3, getMoguai());
+      if (hasHuangFang()) {
+        output.writeBool(3, getHuangFang());
       }
       if (hasMingpai()) {
         output.writeBool(4, getMingpai());
@@ -869,9 +869,9 @@ public final class Entity {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, getDi());
       }
-      if (hasMoguai()) {
+      if (hasHuangFang()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, getMoguai());
+          .computeBoolSize(3, getHuangFang());
       }
       if (hasMingpai()) {
         size += com.google.protobuf.CodedOutputStream
@@ -1041,8 +1041,8 @@ public final class Entity {
         if (other.hasDi()) {
           setDi(other.getDi());
         }
-        if (other.hasMoguai()) {
-          setMoguai(other.getMoguai());
+        if (other.hasHuangFang()) {
+          setHuangFang(other.getHuangFang());
         }
         if (other.hasMingpai()) {
           setMingpai(other.getMingpai());
@@ -1081,7 +1081,7 @@ public final class Entity {
               break;
             }
             case 24: {
-              setMoguai(input.readBool());
+              setHuangFang(input.readBool());
               break;
             }
             case 32: {
@@ -1129,21 +1129,21 @@ public final class Entity {
         return this;
       }
       
-      // optional bool moguai = 3;
-      public boolean hasMoguai() {
-        return result.hasMoguai();
+      // optional bool huangFang = 3;
+      public boolean hasHuangFang() {
+        return result.hasHuangFang();
       }
-      public boolean getMoguai() {
-        return result.getMoguai();
+      public boolean getHuangFang() {
+        return result.getHuangFang();
       }
-      public Builder setMoguai(boolean value) {
-        result.hasMoguai = true;
-        result.moguai_ = value;
+      public Builder setHuangFang(boolean value) {
+        result.hasHuangFang = true;
+        result.huangFang_ = value;
         return this;
       }
-      public Builder clearMoguai() {
-        result.hasMoguai = false;
-        result.moguai_ = false;
+      public Builder clearHuangFang() {
+        result.hasHuangFang = false;
+        result.huangFang_ = false;
         return this;
       }
       
@@ -6106,6 +6106,332 @@ public final class Entity {
     // @@protoc_insertion_point(class_scope:com.randioo.doudizhu_server.protocol.RoleInfo)
   }
   
+  public static final class Cards extends
+      com.google.protobuf.GeneratedMessage {
+    // Use Cards.newBuilder() to construct.
+    private Cards() {
+      initFields();
+    }
+    private Cards(boolean noInit) {}
+    
+    private static final Cards defaultInstance;
+    public static Cards getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public Cards getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.randioo.doudizhu_server.protocol.Entity.internal_static_com_randioo_doudizhu_server_protocol_Cards_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.randioo.doudizhu_server.protocol.Entity.internal_static_com_randioo_doudizhu_server_protocol_Cards_fieldAccessorTable;
+    }
+    
+    // repeated int32 card = 1;
+    public static final int CARD_FIELD_NUMBER = 1;
+    private java.util.List<java.lang.Integer> card_ =
+      java.util.Collections.emptyList();
+    public java.util.List<java.lang.Integer> getCardList() {
+      return card_;
+    }
+    public int getCardCount() { return card_.size(); }
+    public int getCard(int index) {
+      return card_.get(index);
+    }
+    
+    private void initFields() {
+    }
+    public final boolean isInitialized() {
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int element : getCardList()) {
+        output.writeInt32(1, element);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int element : getCardList()) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(element);
+        }
+        size += dataSize;
+        size += 1 * getCardList().size();
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    public static com.randioo.doudizhu_server.protocol.Entity.Cards parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.randioo.doudizhu_server.protocol.Entity.Cards parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.randioo.doudizhu_server.protocol.Entity.Cards parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.randioo.doudizhu_server.protocol.Entity.Cards parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.randioo.doudizhu_server.protocol.Entity.Cards parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.randioo.doudizhu_server.protocol.Entity.Cards parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.randioo.doudizhu_server.protocol.Entity.Cards parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.randioo.doudizhu_server.protocol.Entity.Cards parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.randioo.doudizhu_server.protocol.Entity.Cards parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.randioo.doudizhu_server.protocol.Entity.Cards parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.randioo.doudizhu_server.protocol.Entity.Cards prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
+      private com.randioo.doudizhu_server.protocol.Entity.Cards result;
+      
+      // Construct using com.randioo.doudizhu_server.protocol.Entity.Cards.newBuilder()
+      private Builder() {}
+      
+      private static Builder create() {
+        Builder builder = new Builder();
+        builder.result = new com.randioo.doudizhu_server.protocol.Entity.Cards();
+        return builder;
+      }
+      
+      protected com.randioo.doudizhu_server.protocol.Entity.Cards internalGetResult() {
+        return result;
+      }
+      
+      public Builder clear() {
+        if (result == null) {
+          throw new IllegalStateException(
+            "Cannot call clear() after build().");
+        }
+        result = new com.randioo.doudizhu_server.protocol.Entity.Cards();
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(result);
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.randioo.doudizhu_server.protocol.Entity.Cards.getDescriptor();
+      }
+      
+      public com.randioo.doudizhu_server.protocol.Entity.Cards getDefaultInstanceForType() {
+        return com.randioo.doudizhu_server.protocol.Entity.Cards.getDefaultInstance();
+      }
+      
+      public boolean isInitialized() {
+        return result.isInitialized();
+      }
+      public com.randioo.doudizhu_server.protocol.Entity.Cards build() {
+        if (result != null && !isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return buildPartial();
+      }
+      
+      private com.randioo.doudizhu_server.protocol.Entity.Cards buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        if (!isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return buildPartial();
+      }
+      
+      public com.randioo.doudizhu_server.protocol.Entity.Cards buildPartial() {
+        if (result == null) {
+          throw new IllegalStateException(
+            "build() has already been called on this Builder.");
+        }
+        if (result.card_ != java.util.Collections.EMPTY_LIST) {
+          result.card_ =
+            java.util.Collections.unmodifiableList(result.card_);
+        }
+        com.randioo.doudizhu_server.protocol.Entity.Cards returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.randioo.doudizhu_server.protocol.Entity.Cards) {
+          return mergeFrom((com.randioo.doudizhu_server.protocol.Entity.Cards)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.randioo.doudizhu_server.protocol.Entity.Cards other) {
+        if (other == com.randioo.doudizhu_server.protocol.Entity.Cards.getDefaultInstance()) return this;
+        if (!other.card_.isEmpty()) {
+          if (result.card_.isEmpty()) {
+            result.card_ = new java.util.ArrayList<java.lang.Integer>();
+          }
+          result.card_.addAll(other.card_);
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              addCard(input.readInt32());
+              break;
+            }
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              while (input.getBytesUntilLimit() > 0) {
+                addCard(input.readInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      // repeated int32 card = 1;
+      public java.util.List<java.lang.Integer> getCardList() {
+        return java.util.Collections.unmodifiableList(result.card_);
+      }
+      public int getCardCount() {
+        return result.getCardCount();
+      }
+      public int getCard(int index) {
+        return result.getCard(index);
+      }
+      public Builder setCard(int index, int value) {
+        result.card_.set(index, value);
+        return this;
+      }
+      public Builder addCard(int value) {
+        if (result.card_.isEmpty()) {
+          result.card_ = new java.util.ArrayList<java.lang.Integer>();
+        }
+        result.card_.add(value);
+        return this;
+      }
+      public Builder addAllCard(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        if (result.card_.isEmpty()) {
+          result.card_ = new java.util.ArrayList<java.lang.Integer>();
+        }
+        super.addAll(values, result.card_);
+        return this;
+      }
+      public Builder clearCard() {
+        result.card_ = java.util.Collections.emptyList();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:com.randioo.doudizhu_server.protocol.Cards)
+    }
+    
+    static {
+      defaultInstance = new Cards(true);
+      com.randioo.doudizhu_server.protocol.Entity.internalForceInit();
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:com.randioo.doudizhu_server.protocol.Cards)
+  }
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_com_randioo_doudizhu_server_protocol_RoleData_descriptor;
   private static
@@ -6171,6 +6497,11 @@ public final class Entity {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_randioo_doudizhu_server_protocol_RoleInfo_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_randioo_doudizhu_server_protocol_Cards_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_com_randioo_doudizhu_server_protocol_Cards_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -6185,39 +6516,40 @@ public final class Entity {
       "\005\022\014\n\004name\030\002 \001(\t\022\r\n\005money\030\003 \001(\005\022\016\n\006volume" +
       "\030\004 \001(\005\022\023\n\013musicVolume\030\005 \001(\005\022\022\n\nheadImgUr" +
       "l\030\006 \001(\t\022\024\n\014randiooMoney\030\007 \001(\005\022\021\n\troomCar" +
-      "ds\030\010 \001(\005\"H\n\nGameConfig\022\r\n\005round\030\001 \001(\005\022\n\n" +
-      "\002di\030\002 \001(\005\022\016\n\006moguai\030\003 \001(\010\022\017\n\007mingpai\030\004 \001" +
-      "(\010\"%\n\006PaiNum\022\016\n\006seated\030\001 \001(\005\022\013\n\003num\030\002 \001(" +
-      "\005\"%\n\006Record\022\016\n\006seated\030\001 \001(\005\022\013\n\003pai\030\002 \003(\005" +
-      "\"\234\001\n\014GameRoleData\022\022\n\ngameRoleId\030\001 \001(\t\022\014\n",
-      "\004name\030\002 \001(\t\022\016\n\006seated\030\003 \001(\005\022\r\n\005ready\030\004 \001" +
-      "(\010\022\022\n\nheadImgUrl\030\005 \001(\t\022\r\n\005money\030\006 \001(\005\022\n\n" +
-      "\002id\030\007 \001(\005\022\013\n\003sex\030\010 \001(\005\022\017\n\007account\030\t \001(\t\"" +
-      "\210\001\n\005video\022\023\n\013videoRecord\030\001 \003(\014\022\020\n\010keyPoi" +
-      "nt\030\002 \003(\005\022\021\n\troundOver\030\003 \003(\014\022\020\n\010gameOver\030" +
-      "\004 \001(\014\022\021\n\tstartTime\030\005 \003(\t\022\020\n\010gameType\030\006 \001" +
-      "(\005\022\016\n\006roomId\030\007 \001(\t\"m\n\013videoWithId\022=\n\010vid" +
-      "eoMsg\030\001 \001(\0132+.com.randioo.doudizhu_serve" +
-      "r.protocol.video\022\017\n\007videoId\030\002 \001(\005\022\016\n\006rol" +
-      "eId\030\003 \001(\005\"\033\n\014RecommandPai\022\013\n\003pai\030\001 \003(\005\"\315",
-      "\001\n\020gameRolePlayData\022H\n\014gameRoleData\030\001 \001(" +
-      "\01322.com.randioo.doudizhu_server.protocol" +
-      ".GameRoleData\022\020\n\010allScore\030\002 \001(\005\022\016\n\006paiNu" +
-      "m\030\003 \001(\005\022\031\n\021callLandlordScore\030\004 \001(\005\022\020\n\010is" +
-      "Farmer\030\005 \001(\010\022\016\n\006isAuto\030\006 \001(\010\022\020\n\010isOnline" +
-      "\030\007 \001(\010\"b\n\005Score\022\014\n\004name\030\001 \001(\t\022\r\n\005score\030\002" +
-      " \001(\005\022\020\n\010allScore\030\003 \001(\005\022\016\n\006seated\030\004 \001(\005\022\r" +
-      "\n\005money\030\005 \001(\005\022\013\n\003pai\030\006 \003(\005\"\207\001\n\014GameOverD" +
-      "ata\022\014\n\004name\030\001 \001(\t\022\023\n\013landLordNum\030\002 \001(\005\022\021" +
-      "\n\tfarmerNum\030\003 \001(\005\022\r\n\005score\030\004 \001(\005\022\016\n\006seat",
-      "ed\030\005 \001(\005\022\022\n\nheadImgUrl\030\006 \001(\t\022\016\n\006roleId\030\007" +
-      " \001(\005\"\034\n\016RoundVideoData\022\n\n\002sc\030\001 \003(\014\"(\n\010Ro" +
-      "leInfo\022\016\n\006roleId\030\001 \001(\005\022\014\n\004seat\030\002 \001(\005*5\n\010" +
-      "GameType\022\023\n\017GAME_TYPE_MATCH\020\001\022\024\n\020GAME_TY" +
-      "PE_FRIEND\020\002*M\n\tGameState\022\026\n\022GAME_STATE_P" +
-      "REPARE\020\001\022\024\n\020GAME_START_START\020\002\022\022\n\016GAME_S" +
-      "TART_END\020\003*D\n\022FightVoteApplyExit\022\r\n\tVOTE" +
-      "_IDLE\020\000\022\016\n\nVOTE_AGREE\020\001\022\017\n\013VOTE_REJECT\020\002"
+      "ds\030\010 \001(\005\"K\n\nGameConfig\022\r\n\005round\030\001 \001(\005\022\n\n" +
+      "\002di\030\002 \001(\005\022\021\n\thuangFang\030\003 \001(\010\022\017\n\007mingpai\030" +
+      "\004 \001(\010\"%\n\006PaiNum\022\016\n\006seated\030\001 \001(\005\022\013\n\003num\030\002" +
+      " \001(\005\"%\n\006Record\022\016\n\006seated\030\001 \001(\005\022\013\n\003pai\030\002 " +
+      "\003(\005\"\234\001\n\014GameRoleData\022\022\n\ngameRoleId\030\001 \001(\t",
+      "\022\014\n\004name\030\002 \001(\t\022\016\n\006seated\030\003 \001(\005\022\r\n\005ready\030" +
+      "\004 \001(\010\022\022\n\nheadImgUrl\030\005 \001(\t\022\r\n\005money\030\006 \001(\005" +
+      "\022\n\n\002id\030\007 \001(\005\022\013\n\003sex\030\010 \001(\005\022\017\n\007account\030\t \001" +
+      "(\t\"\210\001\n\005video\022\023\n\013videoRecord\030\001 \003(\014\022\020\n\010key" +
+      "Point\030\002 \003(\005\022\021\n\troundOver\030\003 \003(\014\022\020\n\010gameOv" +
+      "er\030\004 \001(\014\022\021\n\tstartTime\030\005 \003(\t\022\020\n\010gameType\030" +
+      "\006 \001(\005\022\016\n\006roomId\030\007 \001(\t\"m\n\013videoWithId\022=\n\010" +
+      "videoMsg\030\001 \001(\0132+.com.randioo.doudizhu_se" +
+      "rver.protocol.video\022\017\n\007videoId\030\002 \001(\005\022\016\n\006" +
+      "roleId\030\003 \001(\005\"\033\n\014RecommandPai\022\013\n\003pai\030\001 \003(",
+      "\005\"\315\001\n\020gameRolePlayData\022H\n\014gameRoleData\030\001" +
+      " \001(\01322.com.randioo.doudizhu_server.proto" +
+      "col.GameRoleData\022\020\n\010allScore\030\002 \001(\005\022\016\n\006pa" +
+      "iNum\030\003 \001(\005\022\031\n\021callLandlordScore\030\004 \001(\005\022\020\n" +
+      "\010isFarmer\030\005 \001(\010\022\016\n\006isAuto\030\006 \001(\010\022\020\n\010isOnl" +
+      "ine\030\007 \001(\010\"b\n\005Score\022\014\n\004name\030\001 \001(\t\022\r\n\005scor" +
+      "e\030\002 \001(\005\022\020\n\010allScore\030\003 \001(\005\022\016\n\006seated\030\004 \001(" +
+      "\005\022\r\n\005money\030\005 \001(\005\022\013\n\003pai\030\006 \003(\005\"\207\001\n\014GameOv" +
+      "erData\022\014\n\004name\030\001 \001(\t\022\023\n\013landLordNum\030\002 \001(" +
+      "\005\022\021\n\tfarmerNum\030\003 \001(\005\022\r\n\005score\030\004 \001(\005\022\016\n\006s",
+      "eated\030\005 \001(\005\022\022\n\nheadImgUrl\030\006 \001(\t\022\016\n\006roleI" +
+      "d\030\007 \001(\005\"\034\n\016RoundVideoData\022\n\n\002sc\030\001 \003(\014\"(\n" +
+      "\010RoleInfo\022\016\n\006roleId\030\001 \001(\005\022\014\n\004seat\030\002 \001(\005\"" +
+      "\025\n\005Cards\022\014\n\004card\030\001 \003(\005*5\n\010GameType\022\023\n\017GA" +
+      "ME_TYPE_MATCH\020\001\022\024\n\020GAME_TYPE_FRIEND\020\002*M\n" +
+      "\tGameState\022\026\n\022GAME_STATE_PREPARE\020\001\022\024\n\020GA" +
+      "ME_START_START\020\002\022\022\n\016GAME_START_END\020\003*D\n\022" +
+      "FightVoteApplyExit\022\r\n\tVOTE_IDLE\020\000\022\016\n\nVOT" +
+      "E_AGREE\020\001\022\017\n\013VOTE_REJECT\020\002"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6237,7 +6569,7 @@ public final class Entity {
           internal_static_com_randioo_doudizhu_server_protocol_GameConfig_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_randioo_doudizhu_server_protocol_GameConfig_descriptor,
-              new java.lang.String[] { "Round", "Di", "Moguai", "Mingpai", },
+              new java.lang.String[] { "Round", "Di", "HuangFang", "Mingpai", },
               com.randioo.doudizhu_server.protocol.Entity.GameConfig.class,
               com.randioo.doudizhu_server.protocol.Entity.GameConfig.Builder.class);
           internal_static_com_randioo_doudizhu_server_protocol_PaiNum_descriptor =
@@ -6328,6 +6660,14 @@ public final class Entity {
               new java.lang.String[] { "RoleId", "Seat", },
               com.randioo.doudizhu_server.protocol.Entity.RoleInfo.class,
               com.randioo.doudizhu_server.protocol.Entity.RoleInfo.Builder.class);
+          internal_static_com_randioo_doudizhu_server_protocol_Cards_descriptor =
+            getDescriptor().getMessageTypes().get(13);
+          internal_static_com_randioo_doudizhu_server_protocol_Cards_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_com_randioo_doudizhu_server_protocol_Cards_descriptor,
+              new java.lang.String[] { "Card", },
+              com.randioo.doudizhu_server.protocol.Entity.Cards.class,
+              com.randioo.doudizhu_server.protocol.Entity.Cards.Builder.class);
           return null;
         }
       };

@@ -1,14 +1,13 @@
 package com.randioo.doudizhu_server.module.fight.component.cardlist;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import com.randioo.doudizhu_server.entity.po.CardSort;
-import com.randioo.doudizhu_server.error.CardListPatternException;
-import com.randioo.doudizhu_server.error.CardTypeComparableException;
+import com.randioo.doudizhu_server.module.fight.component.CardSort;
 import com.randioo.doudizhu_server.module.fight.component.CardTools;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardListPatternException;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardTypeComparableException;
 
 public class A3N1 extends A1 {
 
@@ -37,8 +36,8 @@ public class A3N1 extends A1 {
 		if (arr.size() != 4)
 			throw new CardListPatternException();
 
-		Set<Integer> set0 = cardSort.getCardSort().get(0);
-		Set<Integer> set2 = cardSort.getCardSort().get(2);
+		Set<Integer> set0 = cardSort.get(0);
+		Set<Integer> set2 = cardSort.get(2);
 
 		if (set0.size() == 2 && set2.size() == 1) {
 			int num = set2.iterator().next();
@@ -53,7 +52,7 @@ public class A3N1 extends A1 {
 	}
 
 	private int addNum(CardSort cardSort, int value) {
-		for (int n : cardSort.getCardSort().get(0)) {
+		for (int n : cardSort.get(0)) {
 			if (n != value) {
 				return n;
 			}
@@ -67,7 +66,7 @@ public class A3N1 extends A1 {
 		if (lastCardList == null) {
 			return;
 		}
-		if (arr.size() < 4 || cardSort.getCardSort().get(2).size() < 1 || cardSort.getCardSort().get(0).size() < 2)
+		if (arr.size() < 4 || cardSort.get(2).size() < 1 || cardSort.get(0).size() < 2)
 			return;
 		if (lastCardList.getClass() != getClass()) {
 			return;
@@ -79,18 +78,18 @@ public class A3N1 extends A1 {
 		Set<Integer> tset = null;
 		CardSort tcardSort = cardSort.clone();
 		
-		Set<Integer> set = tcardSort.getCardSort().get(3);				
+		Set<Integer> set = tcardSort.get(3);				
 		List<Integer> temp = new ArrayList<>(set);
-		CardTools.rmAllValues(tcardSort, temp);
+		tcardSort.remove(temp);
 
-		set = tcardSort.getCardSort().get(1);				
+		set = tcardSort.get(1);				
 		temp = new ArrayList<>(set);
 		for (int value : temp) {
-			tcardSort.getCardSort().get(0).remove(value);
+			tcardSort.get(0).remove(value);
 		}
 			
-		tset = tcardSort.getCardSort().get(2);
-		Set<Integer> set0 = tcardSort.getCardSort().get(0);
+		tset = tcardSort.get(2);
+		Set<Integer> set0 = tcardSort.get(0);
 		if(!set0.iterator().hasNext())
 			return;	
 		for(int pai : tset){

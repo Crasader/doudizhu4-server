@@ -66,19 +66,12 @@ message SCFightRejoin{
 message SCFightFinishRejoin{
 }
 
-
-
-
 message FightRecommandRequest{
 }
 message FightRecommandResponse{
 	optional int32 errorCode = 1 [default = 1];
 	repeated RecommandPai recommandPai = 2;
 }
-
-
-
-
 
 message SCFightStart{
 	repeated int32 pai = 1;
@@ -88,8 +81,11 @@ message SCFightStart{
 	
 }
 
-message SCFightCallFen{
-	optional int32 fen = 1;
+//通知叫的档数
+message SCFightCallScore{
+	optional int32 score = 1; //叫的档数
+	optional int32 seat = 2 ; //位置
+	optional int32 currentScore = 3; //当前档数
 }
 
 message SCFightRoundOver{
@@ -111,12 +107,12 @@ message FightCallLandLordRequest{
 message FightCallLandLordResponse{
 	optional int32 errorCode = 1 [default = 1];
 }
+//通知叫地主
 message SCFightCallLandLord{
 	optional int32 seated = 1;
 	optional int32 countdown = 2;
-	optional int32 currentFen = 3;
-	optional int32 fen = 4;
-	
+	optional int32 currentScore = 3; //当前场上分数
+	optional int32 score = 4;
 }
 
 message SCFightPutOut{
@@ -226,10 +222,50 @@ message FightGameInfoResponse{
 	repeated RoleInfo roleInfo = 2 ; //房间中玩家信息
 }
 
-//明牌按钮开关
-message SCFightMingPaiOnOrOff{
-    optional bool isOpen = 1; //true 表示开
+//明牌按钮显示
+message SCFightMingPaiShow{
+
 }
+
 message SCFightSpring{
-   optional bool isSpring = 1; //true 春天
+	optional bool isSpring = 1; //true 春天
+}
+//报道按钮显示
+message SCFightReportShow{
+	repeated Cards cards = 1; //报道牌的列表
+}
+
+//报道
+message SCFightReport{
+	optional int32 seat = 1;//选择报道的座位
+	repeated Cards cards = 2; //报道牌的列表
+}
+
+//按钮关闭
+message SCFightButtonDisappear{
+	
+}
+//请求报道
+message FightReportRequest{
+    optional bool isReport =1 ; //是否报道
+}
+message FightReportResponse{
+	optional int32 errorCode = 1 [default = 1];
+}
+//报道后 是否打本局按钮显示
+message SCFightPlayReportShow{
+
+}
+//报道后 是否打本局通知
+message SCFightPlayReport{
+   optional bool isPlay = 1 ; //true 为打本局
+   optional int32 seat = 2 ;//位置
+}
+//报道后 是否打本局请求
+message FightPlayReportRequest{
+   optional bool isPlay = 1 ; //是否打
+}
+//报道后 是否打本局
+message FightPlayReportResponse{
+   optional int32 errorCode = 1 [default = 1];
 }

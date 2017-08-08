@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.randioo.doudizhu_server.entity.po.CardSort;
-import com.randioo.doudizhu_server.error.CardListPatternException;
-import com.randioo.doudizhu_server.error.CardTypeComparableException;
+import com.randioo.doudizhu_server.module.fight.component.CardSort;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardListPatternException;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardTypeComparableException;
 
 public class A4B2C2 extends A4 {
 
@@ -40,8 +40,8 @@ public class A4B2C2 extends A4 {
 		if (arr.size() != 8)
 			throw new CardListPatternException();
 		
-		Set<Integer> set1 = cardSort.getCardSort().get(1);
-		Set<Integer> set3 = cardSort.getCardSort().get(3);
+		Set<Integer> set1 = cardSort.get(1);
+		Set<Integer> set3 = cardSort.get(3);
 		if (set3.size() != 1)
 			throw new CardListPatternException();
 		// 如果是带对子

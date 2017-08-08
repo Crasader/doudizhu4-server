@@ -7,6 +7,8 @@
 	<param type="string" key="configPath">./config.zip</param>
 	<param type="string" key="sensitivePath">./sensitive.txt</param>
 	<param type="string" key="configPackageRoot">com.randioo.doudizhu_server.entity.file</param>
+	<param type="boolean" key="matchai">true</param>
+	<param type="boolean" key="dispatch">false</param>
 
 	<!-- 平台 -->
 	<!-- 平台接口调试 -->

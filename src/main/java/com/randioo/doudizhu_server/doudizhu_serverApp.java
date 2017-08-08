@@ -31,7 +31,7 @@ public class doudizhu_serverApp {
         ConfigLoader.loadConfig(GlobleConstant.CONFIG_PACKAGE_PATH, GlobleMap.String(GlobleConstant.ARGS_CONFIG_PATH));
         SensitiveWordDictionary.readAll(GlobleMap.String(GlobleConstant.ARGS_SENSITIVE_PATH));
 
-        SpringContext.initSpringCtx("ApplicationContext.xml");
+        SpringContext.initSpringCtx();
 
         RandiooPlatformSdk randiooPlatformSdk = SpringContext.getBean(RandiooPlatformSdk.class);
         randiooPlatformSdk.setDebug(GlobleMap.Boolean(GlobleConstant.ARGS_PLATFORM));
@@ -41,7 +41,7 @@ public class doudizhu_serverApp {
 
         HeartTimeOutHandler handler = SpringContext.getBean(HeartTimeOutHandler.class);
         gameServerInit.setKeepAliveFilter(new KeepAliveFilter(new ProtoHeartFactory(CS.class, SC.class),
-                IdleStatus.READER_IDLE, handler, 3, 5));
+                IdleStatus.READER_IDLE, handler, 5, 10));
 
         gameServerInit.start();
         GlobleMap.putParam(GlobleConstant.ARGS_LOGIN, true);

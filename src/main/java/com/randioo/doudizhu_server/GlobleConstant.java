@@ -11,5 +11,4 @@ public class GlobleConstant extends com.randioo.randioo_server_base.GlobleConsta
 	public static final String ARGS_MATCH_AI = "matchai";
 	/** 发牌 */
 	public static final String ARGS_DISPATCH = "dispatch";
-
 }

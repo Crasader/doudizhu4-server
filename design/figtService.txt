@@ -1,0 +1,16 @@
+gameReady游戏准备
+gameReady游戏准备
+gameStart游戏开始
+noticeCallLandlord通知叫地主
+callLandlord叫地主
+landlordGiveCards地主给牌
+noticeLandlordReport通知地主报到
+landlordReport(boolean report)地址是否报道
+noticePlayReport通知是否打报道
+playReport(boolean play)打报道确认
+noticeLightCard通知明牌
+lightCard(boolean)明牌
+noticeSendCard通知出牌
+sendCard出牌
+roundOver一次结算
+gameOver二次结算

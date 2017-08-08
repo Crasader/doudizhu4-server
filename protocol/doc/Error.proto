@@ -48,4 +48,7 @@ enum ErrorCode{
 	MINGPAI_FORBIDDEN = 30;//不能明牌
 	FIRST_ROUND = 31;//第一轮
 	NO_VIDEO = 32;//没有录像
-} // 32
+	
+	REPORT_FAIL = 33;//报道失败
+	PLAY_FAIL = 34;//报道后打后不打失败
+} // 34

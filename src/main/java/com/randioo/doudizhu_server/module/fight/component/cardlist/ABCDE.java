@@ -3,10 +3,10 @@ package com.randioo.doudizhu_server.module.fight.component.cardlist;
 import java.util.List;
 import java.util.Set;
 
-import com.randioo.doudizhu_server.entity.po.CardSort;
-import com.randioo.doudizhu_server.error.CardListPatternException;
-import com.randioo.doudizhu_server.error.CardTypeComparableException;
+import com.randioo.doudizhu_server.module.fight.component.CardSort;
 import com.randioo.doudizhu_server.module.fight.component.CardTools;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardListPatternException;
+import com.randioo.doudizhu_server.module.fight.component.send.exception.CardTypeComparableException;
 
 public class ABCDE extends A1 {
 	private int length;
@@ -36,8 +36,8 @@ public class ABCDE extends A1 {
 	public CardList pattern(CardSort cardSort, List<Integer> arr) throws CardListPatternException {
 		if (arr.size() < 5)
 			throw new CardListPatternException();
-		Set<Integer> set1 = cardSort.getCardSort().get(1);
-		Set<Integer> set0 = cardSort.getCardSort().get(0);
+		Set<Integer> set1 = cardSort.get(1);
+		Set<Integer> set0 = cardSort.get(0);
 		if (set1.size() > 0 || (set1.iterator().hasNext() && set1.iterator().next() > CardTools.C_10))
 			throw new CardListPatternException();
 
@@ -62,7 +62,7 @@ public class ABCDE extends A1 {
 
 	@Override
 	public void recommand(List<List<Integer>> recommandList, CardSort cardSort, CardList lastCardList, List<Integer> arr) {
-		if (arr.size() < 5 || cardSort.getCardSort().get(0).size() < 5)
+		if (arr.size() < 5 || cardSort.get(0).size() < 5)
 			return;
 
 		if (lastCardList != null) {

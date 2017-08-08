@@ -1,4 +1,4 @@
-package com.randioo.doudizhu_server.error;
+package com.randioo.doudizhu_server.module.fight.component.send.exception;
 
 public class CardListPatternException extends Exception {
 

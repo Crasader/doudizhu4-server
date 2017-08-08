@@ -37,18 +37,20 @@ message CS{
 	optional FightApplyExitGameRequest FightApplyExitGameRequest = 22;
 	optional FightBackMenuRequest FightBackMenuRequest = 23;
     optional FightGameInfoRequest FightGameInfoRequest = 24;//获取房间玩家信息
+    optional FightReportRequest FightReportRequest = 25;//请求报道
+    optional FightPlayReportRequest FightPlayReportRequest = 26;//报道后 请求是否打
     
-	optional MoneyExchangeRequest MoneyExchangeRequest = 25;
+	optional MoneyExchangeRequest MoneyExchangeRequest = 27;
 
-	optional SettingsRequest SettingsRequest = 26;
+	optional SettingsRequest SettingsRequest = 28;
 
-	optional GetRoleDataRequest GetRoleDataRequest = 27;
-	optional GetSettingsRequest GetSettingsRequest = 28;
+	optional GetRoleDataRequest GetRoleDataRequest = 29;
+	optional GetSettingsRequest GetSettingsRequest = 30;
 
 
-	optional HeartbeatRequest HeartbeatRequest = 29;
+	optional HeartbeatRequest HeartbeatRequest = 31;
 
-	optional VideoGetRequest VideoGetRequest = 30;
-	optional VideoGetByIdRequest VideoGetByIdRequest = 31;
-	optional VideoGetByRoundRequest VideoGetByRoundRequest = 32;
-} // 32
+	optional VideoGetRequest VideoGetRequest = 32;
+	optional VideoGetByIdRequest VideoGetByIdRequest = 33;
+	optional VideoGetByRoundRequest VideoGetByRoundRequest = 34;
+} // 34
